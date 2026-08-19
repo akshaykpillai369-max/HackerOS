@@ -57,4 +57,18 @@ function typeLine() {
     }, 40);
 }
 
+/* ==================================================
+   ENTER HACKEROS
+================================================== */
+
+enterButton.addEventListener("click", () => {
+
+    bootScreen.style.display = "none";
+
+    desktop.style.display = "block";
+
+    updateClock();
+
+});
+
 typeLine();

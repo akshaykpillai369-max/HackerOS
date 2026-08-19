@@ -12,11 +12,14 @@
 
 <body>
 
-    <main class="boot-screen">
+    <!-- ==================================================
+         BOOT SCREEN
+    ================================================== -->
+
+    <main id="bootScreen" class="boot-screen">
 
         <div class="boot-container">
 
-            <!-- LOGO -->
             <div class="logo">
 
                 <div class="logo-symbol">
@@ -29,14 +32,10 @@
 
             </div>
 
-
-            <!-- SUBTITLE -->
             <p class="subtitle">
                 SECURITY WORKSTATION
             </p>
 
-
-            <!-- TERMINAL -->
             <div class="terminal">
 
                 <p class="boot-line">
@@ -71,19 +70,142 @@
 
             </div>
 
-
-            <!-- ENTER BUTTON -->
             <button id="enterButton" disabled>
                 ENTER SYSTEM
             </button>
 
-
-            <!-- VERSION -->
             <p class="version">
                 HackerOS v1.0.0
             </p>
 
         </div>
+
+    </main>
+
+
+    <!-- ==================================================
+         HACKEROS DESKTOP
+    ================================================== -->
+
+    <main id="desktop" class="desktop">
+
+        <!-- TOP BAR -->
+        <header class="top-bar">
+
+            <div class="system-name">
+                <span>&gt;_</span>
+                HACKEROS
+            </div>
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                SYSTEM ONLINE
+
+            </div>
+
+            <div class="clock" id="clock">
+                00:00:00
+            </div>
+
+        </header>
+
+
+        <!-- DESKTOP APPS -->
+        <section class="desktop-area">
+
+            <button class="app-icon" data-app="terminal">
+
+                <div class="app-icon-symbol">
+                    &gt;_
+                </div>
+
+                <span>
+                    Terminal
+                </span>
+
+            </button>
+
+
+            <button class="app-icon" data-app="network">
+
+                <div class="app-icon-symbol">
+                    ◉
+                </div> 
+
+                <span>
+                    Network Scanner
+                </span>
+      
+            </button>
+
+
+            <button class="app-icon" data-app="editor">
+
+                <div class="app-icon-symbol">
+                    &lt;/&gt;
+                </div>
+
+                <span>
+                    Code Editor
+                </span>
+
+            </button>
+
+
+            <button class="app-icon" data-app="monitor">
+
+                <div class="app-icon-symbol">
+                    ⚡
+                </div>
+
+                <span>
+                    System Monitor
+                </span>
+
+            </button>
+
+        </section>
+
+        <!-- TASKBAR -->
+        <footer class="taskbar">
+
+            <div class="taskbar-left">
+
+                <div class="taskbar-logo">
+                    &gt;_
+                </div>
+
+                <span>
+                    HackerOS
+                </span>
+
+            </div>
+
+
+            <div class="taskbar-center">
+
+                <span>
+                    SECURE SESSION
+                </span>
+
+            </div>
+
+
+            <div class="taskbar-right">
+
+                <span>
+                    USER: ROOT
+                </span>
+
+                <span class="taskbar-stat">
+                    ●
+                </span>
+
+            </div>
+
+        </footer>
 
     </main>
 

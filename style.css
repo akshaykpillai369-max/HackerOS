@@ -6,12 +6,15 @@
 
 body {
     font-family: "Courier New", monospace;
-
     background: #020604;
     color: #00ff66;
-
     overflow: hidden;
 }
+
+
+/* ==================================================
+   BOOT SCREEN
+================================================== */
 
 .boot-screen {
     width: 100%;
@@ -46,6 +49,11 @@ body {
         0 0 20px rgba(0, 255, 102, 0.15),
         inset 0 0 30px rgba(0, 255, 102, 0.03);
 }
+
+
+/* ==================================================
+   BOOT LOGO
+================================================== */
 
 .logo {
     display: flex;
@@ -82,6 +90,11 @@ body {
     color: #00ff66;
 }
 
+
+/* ==================================================
+   SUBTITLE
+================================================== */
+
 .subtitle {
     margin-top: 8px;
 
@@ -91,6 +104,11 @@ body {
 
     color: #00aa44;
 }
+
+
+/* ==================================================
+   BOOT TERMINAL
+================================================== */
 
 .terminal {
     max-width: 520px;
@@ -148,6 +166,11 @@ body {
         0 0 10px #00ff66;
 }
 
+
+/* ==================================================
+   ENTER BUTTON
+================================================== */
+
 #enterButton {
     padding: 14px 30px;
 
@@ -196,10 +219,336 @@ body {
         0 0 30px rgba(0, 255, 102, 0.5);
 }
 
+
+/* ==================================================
+   VERSION
+================================================== */
+
 .version {
     margin-top: 30px;
 
     font-size: 11px;
 
     color: #267346;
+}
+
+
+/* ==================================================
+   HACKEROS DESKTOP
+================================================== */
+
+.desktop {
+    display: none;
+
+    width: 100%;
+    height: 100vh;
+
+    position: relative;
+
+    background-image: url("desktop-bg.jpeg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+
+/* ==================================================
+   DARK OVERLAY
+================================================== */
+
+.desktop::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.12),
+            rgba(0, 0, 0, 0.12)
+        );
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   TOP BAR
+================================================== */
+
+.top-bar {
+    position: relative;
+
+    z-index: 10;
+
+    width: 100%;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 25px;
+
+    background: rgba(0, 8, 4, 0.88);
+
+    border-bottom: 1px solid #075c2c;
+
+    box-shadow:
+        0 0 15px rgba(0, 255, 102, 0.08);
+}
+
+
+/* ==================================================
+   SYSTEM NAME
+================================================== */
+
+.system-name {
+    font-size: 16px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    color: white;
+}
+
+.system-name span {
+    margin-right: 8px;
+
+    color: #00ff66;
+
+    text-shadow:
+        0 0 8px #00ff66;
+}
+
+
+/* ==================================================
+   SYSTEM STATUS
+================================================== */
+
+.system-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    color: #66ff99;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #00ff66;
+
+    box-shadow:
+        0 0 8px #00ff66;
+}
+
+
+/* ==================================================
+   CLOCK
+================================================== */
+
+.clock {
+    min-width: 85px;
+
+    text-align: right;
+
+    font-size: 14px;
+
+    color: #00ff66;
+}
+
+
+/* ==================================================
+   DESKTOP AREA
+================================================== */
+
+.desktop-area {
+    position: relative;
+
+    z-index: 2;
+
+    height: calc(100vh - 105px);
+
+    padding: 30px;
+
+    /*
+        ONE COLUMN
+        APPS WILL BE VERTICALLY ALIGNED
+    */
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 10px;
+}
+
+
+/* ==================================================
+   APP ICON
+================================================== */
+
+.app-icon {
+    width: 130px;
+    height: 105px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border: 1px solid transparent;
+
+    background: transparent;
+
+    color: #8affb5;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.app-icon:hover {
+    background: rgba(0, 255, 102, 0.08);
+
+    border-color: #075c2c;
+
+    box-shadow:
+        0 0 15px rgba(0, 255, 102, 0.08);
+}
+
+
+/* ==================================================
+   APP ICON SYMBOL
+================================================== */
+
+.app-icon-symbol {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #08783a;
+
+    background: rgba(0, 20, 9, 0.8);
+
+    color: #00ff66;
+
+    font-size: 20px;
+
+    text-shadow:
+        0 0 8px #00ff66;
+
+    box-shadow:
+        inset 0 0 10px rgba(0, 255, 102, 0.05);
+}
+
+
+.app-icon span {
+    font-size: 11px;
+
+    text-align: center;
+
+    color: #8affb5;
+}
+
+
+/* ==================================================
+   TASKBAR
+================================================== */
+
+.taskbar {
+    position: absolute;
+
+    z-index: 10;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+    background: rgba(0, 8, 4, 0.95);
+
+    border-top: 1px solid #075c2c;
+
+    font-size: 11px;
+
+    color: #4fcf7a;
+}
+
+.taskbar-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #00ff66;
+}
+
+.taskbar-logo {
+    font-weight: bold;
+
+    font-size: 16px;
+
+    text-shadow:
+        0 0 8px #00ff66;
+}
+
+.taskbar-center {
+    letter-spacing: 2px;
+
+    color: #287f4c;
+}
+
+.taskbar-right {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.taskbar-status {
+    color: #00ff66;
+
+    text-shadow:
+        0 0 8px #00ff66;
 }
