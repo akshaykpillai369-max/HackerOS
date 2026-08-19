@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Courier New", monospace;
+
+    background: #020604;
+    color: #00ff66;
+
+    overflow: hidden;
+}
+
+.boot-screen {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #06351b 0%,
+            #020604 45%,
+            #000000 100%
+        );
+}
+
+.boot-container {
+    width: min(650px, 90%);
+
+    padding: 50px 40px;
+
+    text-align: center;
+
+    background: rgba(0, 15, 7, 0.9);
+
+    border: 1px solid #0a7d3b;
+    border-radius: 8px;
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 102, 0.15),
+        inset 0 0 30px rgba(0, 255, 102, 0.03);
+}
+
+.logo {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+}
+
+.logo-symbol {
+    font-size: 42px;
+    font-weight: bold;
+
+    color: #00ff66;
+
+    text-shadow:
+        0 0 10px #00ff66,
+        0 0 25px #00ff66;
+}
+
+.logo h1 {
+    font-size: 48px;
+
+    letter-spacing: 5px;
+
+    color: white;
+
+    text-shadow:
+        0 0 10px rgba(0, 255, 102, 0.6);
+}
+
+.logo h1 span {
+    color: #00ff66;
+}
+
+.subtitle {
+    margin-top: 8px;
+
+    font-size: 13px;
+
+    letter-spacing: 5px;
+
+    color: #00aa44;
+}
+
+.terminal {
+    max-width: 520px;
+
+    margin: 40px auto;
+
+    padding: 25px;
+
+    text-align: left;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    border-left: 2px solid #00ff66;
+}
+
+.boot-line {
+    margin: 10px 0;
+
+    min-height: 20px;
+
+    font-size: 14px;
+
+    color: #8affb5;
+
+    opacity: 0;
+}
+
+.boot-line.active {
+    opacity: 1;
+}
+
+.prompt {
+    color: #00ff66;
+}
+
+.message {
+    margin-left: 5px;
+}
+
+.terminal strong {
+    float: right;
+
+    color: #00ff66;
+
+    font-weight: normal;
+
+    opacity: 0;
+}
+
+.boot-line.completed strong {
+    opacity: 1;
+
+    text-shadow:
+        0 0 5px #00ff66,
+        0 0 10px #00ff66;
+}
+
+#enterButton {
+    padding: 14px 30px;
+
+    border: 1px solid #00ff66;
+    border-radius: 4px;
+
+    background: transparent;
+
+    color: #00ff66;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+#enterButton:disabled {
+    opacity: 0.35;
+
+    cursor: not-allowed;
+
+    box-shadow: none;
+}
+
+#enterButton:disabled:hover {
+    background: transparent;
+
+    color: #00ff66;
+
+    box-shadow: none;
+}
+
+#enterButton:not(:disabled):hover {
+    background: #00ff66;
+
+    color: #020604;
+
+    box-shadow:
+        0 0 10px #00ff66,
+        0 0 30px rgba(0, 255, 102, 0.5);
+}
+
+.version {
+    margin-top: 30px;
+
+    font-size: 11px;
+
+    color: #267346;
+}

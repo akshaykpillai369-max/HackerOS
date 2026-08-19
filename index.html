@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,53 +17,63 @@
         <div class="boot-container">
 
             <div class="logo">
-                <div class="logo-symbol">&gt;_</div>
+
+                <div class="logo-symbol">
+                    &gt;_
+                </div>
 
                 <h1>
                     HACKER<span>OS</span>
                 </h1>
+
             </div>
 
             <p class="subtitle">
                 SECURITY WORKSTATION
             </p>
 
+
+            <!-- TERMINAL -->
             <div class="terminal">
 
-                <p>
-                    <span>&gt;</span>
-                    Initializing HackerOS...
+                <p class="boot-line">
+                    <span class="prompt">&gt;</span>
+                    <span class="message"></span>
                     <strong>[OK]</strong>
                 </p>
 
-                <p>
-                    <span>&gt;</span>
-                    Loading kernel...
+                <p class="boot-line">
+                    <span class="prompt">&gt;</span>
+                    <span class="message"></span>
                     <strong>[OK]</strong>
                 </p>
 
-                <p>
-                    <span>&gt;</span>
-                    Loading security modules...
+                <p class="boot-line">
+                    <span class="prompt">&gt;</span>
+                    <span class="message"></span>
                     <strong>[OK]</strong>
                 </p>
 
-                <p>
-                    <span>&gt;</span>
-                    Establishing secure session...
+                <p class="boot-line">
+                    <span class="prompt">&gt;</span>
+                    <span class="message"></span>
                     <strong>[OK]</strong>
                 </p>
 
-                <p>
-                    <span>&gt;</span>
-                    System ready.
+                <p class="boot-line">
+                    <span class="prompt">&gt;</span>
+                    <span class="message"></span>
+                    <strong>[READY]</strong>
                 </p>
 
             </div>
 
-            <button id="enterButton">
+
+            <!-- ENTER BUTTON -->
+            <button id="enterButton" disabled>
                 ENTER SYSTEM
             </button>
+
 
             <p class="version">
                 HackerOS v1.0.0
@@ -72,7 +83,9 @@
 
     </main>
 
+
     <script src="script.js"></script>
 
 </body>
+
 </html>
