@@ -1,13 +1,21 @@
+/* ==================================================
+   GLOBAL
+================================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 body {
     font-family: "Courier New", monospace;
+
     background: #020604;
+
     color: #00ff66;
+
     overflow: hidden;
 }
 
@@ -21,6 +29,7 @@ body {
     height: 100vh;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -33,6 +42,7 @@ body {
         );
 }
 
+
 .boot-container {
     width: min(650px, 90%);
 
@@ -43,6 +53,7 @@ body {
     background: rgba(0, 15, 7, 0.9);
 
     border: 1px solid #0a7d3b;
+
     border-radius: 8px;
 
     box-shadow:
@@ -64,8 +75,10 @@ body {
     gap: 15px;
 }
 
+
 .logo-symbol {
     font-size: 42px;
+
     font-weight: bold;
 
     color: #00ff66;
@@ -74,6 +87,7 @@ body {
         0 0 10px #00ff66,
         0 0 25px #00ff66;
 }
+
 
 .logo h1 {
     font-size: 48px;
@@ -86,13 +100,14 @@ body {
         0 0 10px rgba(0, 255, 102, 0.6);
 }
 
+
 .logo h1 span {
     color: #00ff66;
 }
 
 
 /* ==================================================
-   SUBTITLE
+   BOOT SUBTITLE
 ================================================== */
 
 .subtitle {
@@ -124,6 +139,7 @@ body {
     border-left: 2px solid #00ff66;
 }
 
+
 .boot-line {
     margin: 10px 0;
 
@@ -136,17 +152,21 @@ body {
     opacity: 0;
 }
 
+
 .boot-line.active {
     opacity: 1;
 }
+
 
 .prompt {
     color: #00ff66;
 }
 
+
 .message {
     margin-left: 5px;
 }
+
 
 .terminal strong {
     float: right;
@@ -157,6 +177,7 @@ body {
 
     opacity: 0;
 }
+
 
 .boot-line.completed strong {
     opacity: 1;
@@ -175,6 +196,7 @@ body {
     padding: 14px 30px;
 
     border: 1px solid #00ff66;
+
     border-radius: 4px;
 
     background: transparent;
@@ -184,6 +206,7 @@ body {
     font-family: inherit;
 
     font-size: 14px;
+
     font-weight: bold;
 
     letter-spacing: 2px;
@@ -193,6 +216,7 @@ body {
     transition: 0.25s ease;
 }
 
+
 #enterButton:disabled {
     opacity: 0.35;
 
@@ -201,13 +225,6 @@ body {
     box-shadow: none;
 }
 
-#enterButton:disabled:hover {
-    background: transparent;
-
-    color: #00ff66;
-
-    box-shadow: none;
-}
 
 #enterButton:not(:disabled):hover {
     background: #00ff66;
@@ -245,7 +262,8 @@ body {
 
     position: relative;
 
-    background-image: url("desktop-bg.jpeg");
+    background-image:
+        url("desktop-bg.jpeg");
 
     background-size: cover;
 
@@ -258,7 +276,7 @@ body {
 
 
 /* ==================================================
-   DARK OVERLAY
+   DESKTOP OVERLAY
 ================================================== */
 
 .desktop::before {
@@ -288,11 +306,13 @@ body {
     z-index: 10;
 
     width: 100%;
+
     height: 55px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
     padding: 0 25px;
@@ -306,10 +326,6 @@ body {
 }
 
 
-/* ==================================================
-   SYSTEM NAME
-================================================== */
-
 .system-name {
     font-size: 16px;
 
@@ -320,6 +336,7 @@ body {
     color: white;
 }
 
+
 .system-name span {
     margin-right: 8px;
 
@@ -329,10 +346,6 @@ body {
         0 0 8px #00ff66;
 }
 
-
-/* ==================================================
-   SYSTEM STATUS
-================================================== */
 
 .system-status {
     display: flex;
@@ -348,6 +361,7 @@ body {
     color: #66ff99;
 }
 
+
 .status-dot {
     width: 7px;
     height: 7px;
@@ -361,10 +375,6 @@ body {
 }
 
 
-/* ==================================================
-   CLOCK
-================================================== */
-
 .clock {
     min-width: 85px;
 
@@ -377,7 +387,7 @@ body {
 
 
 /* ==================================================
-   DESKTOP AREA
+   DESKTOP APPS
 ================================================== */
 
 .desktop-area {
@@ -389,11 +399,6 @@ body {
 
     padding: 30px;
 
-    /*
-        ONE COLUMN
-        APPS WILL BE VERTICALLY ALIGNED
-    */
-
     display: flex;
 
     flex-direction: column;
@@ -404,12 +409,9 @@ body {
 }
 
 
-/* ==================================================
-   APP ICON
-================================================== */
-
 .app-icon {
     width: 130px;
+
     height: 105px;
 
     display: flex;
@@ -417,6 +419,7 @@ body {
     flex-direction: column;
 
     align-items: center;
+
     justify-content: center;
 
     gap: 8px;
@@ -434,6 +437,7 @@ body {
     transition: 0.2s ease;
 }
 
+
 .app-icon:hover {
     background: rgba(0, 255, 102, 0.08);
 
@@ -443,10 +447,6 @@ body {
         0 0 15px rgba(0, 255, 102, 0.08);
 }
 
-
-/* ==================================================
-   APP ICON SYMBOL
-================================================== */
 
 .app-icon-symbol {
     width: 50px;
@@ -467,9 +467,6 @@ body {
 
     text-shadow:
         0 0 8px #00ff66;
-
-    box-shadow:
-        inset 0 0 10px rgba(0, 255, 102, 0.05);
 }
 
 
@@ -483,6 +480,233 @@ body {
 
 
 /* ==================================================
+   TERMINAL WINDOW
+================================================== */
+
+.app-window {
+    position: absolute;
+
+    z-index: 20;
+
+    display: none;
+}
+
+
+/* ==================================================
+   TERMINAL
+================================================== */
+
+.terminal-window {
+    width: 700px;
+
+    height: 430px;
+
+    top: 100px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: rgba(0, 8, 4, 0.96);
+
+    border: 1px solid #08783a;
+
+    box-shadow:
+        0 0 30px rgba(0, 255, 102, 0.15);
+}
+
+
+/* ==================================================
+   WINDOW HEADER
+================================================== */
+
+.window-header {
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 10px;
+
+    background: rgba(0, 20, 9, 0.98);
+
+    border-bottom: 1px solid #075c2c;
+
+    cursor: move;
+
+    user-select: none;
+}
+
+
+.window-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 12px;
+
+    color: #8affb5;
+}
+
+
+.window-icon {
+    color: #00ff66;
+
+    font-weight: bold;
+}
+
+
+.window-controls {
+    display: flex;
+
+    gap: 5px;
+}
+
+
+.window-control {
+    width: 24px;
+    height: 22px;
+
+    border: 1px solid #075c2c;
+
+    background: transparent;
+
+    color: #00ff66;
+
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+
+.window-control:hover {
+    background: #00ff66;
+
+    color: #020604;
+}
+
+
+.window-control.close:hover {
+    background: #ff3333;
+
+    color: white;
+
+    border-color: #ff3333;
+}
+
+
+/* ==================================================
+   TERMINAL CONTENT
+================================================== */
+
+.terminal-content {
+    height: calc(100% - 38px);
+
+    padding: 18px;
+
+    overflow-y: auto;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0, 255, 102, 0.04),
+            transparent 70%
+        );
+
+    color: #8affb5;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.terminal-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.terminal-content::-webkit-scrollbar-track {
+    background: #020604;
+}
+
+
+.terminal-content::-webkit-scrollbar-thumb {
+    background: #075c2c;
+}
+
+
+/* ==================================================
+   TERMINAL OUTPUT
+================================================== */
+
+.terminal-output {
+    white-space: pre-wrap;
+
+    word-break: break-word;
+}
+
+
+.terminal-highlight {
+    color: #00ff66;
+
+    text-shadow:
+        0 0 5px #00ff66;
+}
+
+
+/* ==================================================
+   COMMAND LINE
+================================================== */
+
+.command-line {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+}
+
+
+.command-prompt {
+    color: #00ff66;
+
+    white-space: nowrap;
+
+    margin-right: 8px;
+
+    text-shadow:
+        0 0 5px rgba(0, 255, 102, 0.5);
+}
+
+
+#terminalInput {
+    flex: 1;
+
+    min-width: 0;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    caret-color: #00ff66;
+}
+
+
+/* ==================================================
    TASKBAR
 ================================================== */
 
@@ -492,14 +716,17 @@ body {
     z-index: 10;
 
     bottom: 0;
+
     left: 0;
 
     width: 100%;
+
     height: 50px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
     padding: 0 20px;
@@ -513,6 +740,7 @@ body {
     color: #4fcf7a;
 }
 
+
 .taskbar-left {
     display: flex;
 
@@ -523,6 +751,7 @@ body {
     color: #00ff66;
 }
 
+
 .taskbar-logo {
     font-weight: bold;
 
@@ -532,11 +761,13 @@ body {
         0 0 8px #00ff66;
 }
 
+
 .taskbar-center {
     letter-spacing: 2px;
 
     color: #287f4c;
 }
+
 
 .taskbar-right {
     display: flex;
@@ -546,9 +777,10 @@ body {
     gap: 12px;
 }
 
+
 .taskbar-status {
     color: #00ff66;
 
     text-shadow:
         0 0 8px #00ff66;
-}
+}   

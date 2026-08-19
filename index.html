@@ -3,7 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>HackerOS</title>
 
@@ -32,9 +36,11 @@
 
             </div>
 
+
             <p class="subtitle">
                 SECURITY WORKSTATION
             </p>
+
 
             <div class="terminal">
 
@@ -70,9 +76,11 @@
 
             </div>
 
+
             <button id="enterButton" disabled>
                 ENTER SYSTEM
             </button>
+
 
             <p class="version">
                 HackerOS v1.0.0
@@ -90,12 +98,14 @@
     <main id="desktop" class="desktop">
 
         <!-- TOP BAR -->
+
         <header class="top-bar">
 
             <div class="system-name">
                 <span>&gt;_</span>
                 HACKEROS
             </div>
+
 
             <div class="system-status">
 
@@ -105,7 +115,11 @@
 
             </div>
 
-            <div class="clock" id="clock">
+
+            <div
+                class="clock"
+                id="clock"
+            >
                 00:00:00
             </div>
 
@@ -113,9 +127,15 @@
 
 
         <!-- DESKTOP APPS -->
+
         <section class="desktop-area">
 
-            <button class="app-icon" data-app="terminal">
+            <!-- TERMINAL -->
+
+            <button
+                class="app-icon"
+                data-app="terminal"
+            >
 
                 <div class="app-icon-symbol">
                     &gt;_
@@ -128,20 +148,30 @@
             </button>
 
 
-            <button class="app-icon" data-app="network">
+            <!-- NETWORK SCANNER -->
+
+            <button
+                class="app-icon"
+                data-app="network"
+            >
 
                 <div class="app-icon-symbol">
                     ◉
-                </div> 
+                </div>
 
                 <span>
                     Network Scanner
                 </span>
-      
+
             </button>
 
 
-            <button class="app-icon" data-app="editor">
+            <!-- CODE EDITOR -->
+
+            <button
+                class="app-icon"
+                data-app="editor"
+            >
 
                 <div class="app-icon-symbol">
                     &lt;/&gt;
@@ -154,7 +184,12 @@
             </button>
 
 
-            <button class="app-icon" data-app="monitor">
+            <!-- SYSTEM MONITOR -->
+
+            <button
+                class="app-icon"
+                data-app="monitor"
+            >
 
                 <div class="app-icon-symbol">
                     ⚡
@@ -168,7 +203,106 @@
 
         </section>
 
+
+        <!-- ==================================================
+             TERMINAL WINDOW
+        ================================================== -->
+
+        <section
+            id="terminalWindow"
+            class="app-window terminal-window"
+        >
+
+            <!-- WINDOW TITLE BAR -->
+
+            <div
+                id="terminalHeader"
+                class="window-header"
+            >
+
+                <div class="window-title">
+
+                    <span class="window-icon">
+                        &gt;_
+                    </span>
+
+                    Terminal
+
+                </div>
+
+
+                <div class="window-controls">
+
+                    <button
+                        id="terminalMinimize"
+                        class="window-control minimize"
+                    >
+                        —
+                    </button>
+
+                    <button
+                        id="terminalClose"
+                        class="window-control close"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- TERMINAL CONTENT -->
+
+            <div
+                id="terminalContent"
+                class="terminal-content"
+            >
+
+                <div class="terminal-output">
+
+                    <div>
+                        HackerOS Terminal v1.0.0
+                    </div>
+
+                    <div>
+                        Secure shell initialized.
+                    </div>
+
+                    <div>
+                        Type <span class="terminal-highlight">help</span>
+                        to see available commands.
+                    </div>
+
+                    <br>
+
+                </div>
+
+
+                <!-- COMMAND LINE -->
+
+                <div class="command-line">
+
+                    <span class="command-prompt">
+                        root@hackeros:~$
+                    </span>
+
+                    <input
+                        id="terminalInput"
+                        type="text"
+                        autocomplete="off"
+                        spellcheck="false"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
         <!-- TASKBAR -->
+
         <footer class="taskbar">
 
             <div class="taskbar-left">
@@ -199,7 +333,7 @@
                     USER: ROOT
                 </span>
 
-                <span class="taskbar-stat">
+                <span class="taskbar-status">
                     ●
                 </span>
 
