@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -11,18 +12,30 @@
 
     <title>HackerOS</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
+
 <body>
+
 
     <!-- ==================================================
          BOOT SCREEN
     ================================================== -->
 
-    <main id="bootScreen" class="boot-screen">
+    <section
+        id="bootScreen"
+        class="boot-screen"
+    >
 
         <div class="boot-container">
+
+
+            <!-- LOGO -->
 
             <div class="logo">
 
@@ -37,120 +50,175 @@
             </div>
 
 
-            <p class="subtitle">
-                SECURITY WORKSTATION
-            </p>
+            <div class="subtitle">
+                SECURE // PRIVATE // POWERFUL
+            </div>
 
+
+            <!-- BOOT TERMINAL -->
 
             <div class="terminal">
 
-                <p class="boot-line">
-                    <span class="prompt">&gt;</span>
+
+                <p
+                    class="boot-line"
+                    data-line="1"
+                >
+                    <span>[+]</span>
+
                     <span class="message"></span>
-                    <strong>[OK]</strong>
+
+                    <strong>
+                        ...
+                    </strong>
                 </p>
 
-                <p class="boot-line">
-                    <span class="prompt">&gt;</span>
+
+                <p
+                    class="boot-line"
+                    data-line="2"
+                >
+                    <span>[+]</span>
+
                     <span class="message"></span>
-                    <strong>[OK]</strong>
+
+                    <strong>
+                        ...
+                    </strong>
                 </p>
 
-                <p class="boot-line">
-                    <span class="prompt">&gt;</span>
+
+                <p
+                    class="boot-line"
+                    data-line="3"
+                >
+                    <span>[+]</span>
+
                     <span class="message"></span>
-                    <strong>[OK]</strong>
+
+                    <strong>
+                        ...
+                    </strong>
                 </p>
 
-                <p class="boot-line">
-                    <span class="prompt">&gt;</span>
+
+                <p
+                    class="boot-line"
+                    data-line="4"
+                >
+                    <span>[+]</span>
+
                     <span class="message"></span>
-                    <strong>[OK]</strong>
+
+                    <strong>
+                        ...
+                    </strong>
                 </p>
 
-                <p class="boot-line">
-                    <span class="prompt">&gt;</span>
+
+                <p
+                    class="boot-line"
+                    data-line="5"
+                >
+                    <span>[+]</span>
+
                     <span class="message"></span>
-                    <strong>[READY]</strong>
+
+                    <strong>
+                        ...
+                    </strong>
                 </p>
+
 
             </div>
 
 
-            <button id="enterButton" disabled>
+            <!-- ENTER BUTTON -->
+
+            <button
+                id="enterButton"
+                disabled
+            >
                 ENTER SYSTEM
             </button>
 
 
-            <p class="version">
-                HackerOS v1.0.0
-            </p>
+            <div class="version">
+                HACKEROS v1.0.0 // SECURE BOOT
+            </div>
+
 
         </div>
 
-    </main>
+    </section>
+
 
 
     <!-- ==================================================
          HACKEROS DESKTOP
     ================================================== -->
 
-    <main id="desktop" class="desktop">
+    <section
+        id="desktop"
+        class="desktop"
+    >
 
-        <!-- TOP BAR -->
 
-        <header class="top-bar">
+        <!-- ==================================================
+             DESKTOP HEADER
+        ================================================== -->
 
-            <div class="system-name">
-                <span>&gt;_</span>
-                HACKEROS
+        <div class="desktop-topbar">
+
+            <div class="topbar-logo">
+                &gt;_ HACKER<span>OS</span>
             </div>
 
 
-            <div class="system-status">
+            <div class="topbar-status">
 
-                <span class="status-dot"></span>
+                <span>
+                    ● SYSTEM ONLINE
+                </span>
 
-                SYSTEM ONLINE
+                <span id="clock">
+                    00:00:00
+                </span>
 
             </div>
 
-
-            <div
-                class="clock"
-                id="clock"
-            >
-                00:00:00
-            </div>
-
-        </header>
+        </div>
 
 
-        <!-- DESKTOP APPS -->
 
-        <section class="desktop-area">
+        <!-- ==================================================
+             DESKTOP APPS
+        ================================================== -->
+
+        <div class="desktop-apps">
+
 
             <!-- TERMINAL -->
 
-            <button
+            <div
                 class="app-icon"
                 data-app="terminal"
             >
 
-                <div class="app-icon-symbol">
+                <div class="app-icon-symbol terminal-symbol">
                     &gt;_
                 </div>
 
-                <span>
+                <div class="app-name">
                     Terminal
-                </span>
+                </div>
 
-            </button>
+            </div>
 
 
             <!-- NETWORK SCANNER -->
 
-            <button
+            <div
                 class="app-icon"
                 data-app="network"
             >
@@ -159,16 +227,16 @@
                     ◉
                 </div>
 
-                <span>
+                <div class="app-name">
                     Network Scanner
-                </span>
+                </div>
 
-            </button>
+            </div>
 
 
             <!-- CODE EDITOR -->
 
-            <button
+            <div
                 class="app-icon"
                 data-app="editor"
             >
@@ -177,16 +245,16 @@
                     &lt;/&gt;
                 </div>
 
-                <span>
+                <div class="app-name">
                     Code Editor
-                </span>
+                </div>
 
-            </button>
+            </div>
 
 
             <!-- SYSTEM MONITOR -->
 
-            <button
+            <div
                 class="app-icon"
                 data-app="monitor"
             >
@@ -195,13 +263,15 @@
                     ⚡
                 </div>
 
-                <span>
+                <div class="app-name">
                     System Monitor
-                </span>
+                </div>
 
-            </button>
+            </div>
 
-        </section>
+
+        </div>
+
 
 
         <!-- ==================================================
@@ -213,7 +283,6 @@
             class="app-window terminal-window"
         >
 
-            <!-- WINDOW TITLE BAR -->
 
             <div
                 id="terminalHeader"
@@ -226,7 +295,7 @@
                         &gt;_
                     </span>
 
-                    Terminal
+                    HackerOS Terminal
 
                 </div>
 
@@ -235,9 +304,9 @@
 
                     <button
                         id="terminalMinimize"
-                        class="window-control minimize"
+                        class="window-control"
                     >
-                        —
+                        −
                     </button>
 
                     <button
@@ -252,26 +321,43 @@
             </div>
 
 
-            <!-- TERMINAL CONTENT -->
 
             <div
                 id="terminalContent"
                 class="terminal-content"
             >
 
+
+                <div class="terminal-banner">
+
+<pre>
+        __
+       / /_
+      / __/
+     / /_
+    / __/
+   /_/
+</pre>
+
+                    <div>
+                        HACKEROS TERMINAL
+                    </div>
+
+                    <small>
+                        Type "help" to see available commands.
+                    </small>
+
+                </div>
+
+
                 <div class="terminal-output">
 
                     <div>
-                        HackerOS Terminal v1.0.0
+                        Welcome to HackerOS.
                     </div>
 
                     <div>
                         Secure shell initialized.
-                    </div>
-
-                    <div>
-                        Type <span class="terminal-highlight">help</span>
-                        to see available commands.
                     </div>
 
                     <br>
@@ -279,11 +365,9 @@
                 </div>
 
 
-                <!-- COMMAND LINE -->
+                <div class="terminal-input-line">
 
-                <div class="command-line">
-
-                    <span class="command-prompt">
+                    <span class="terminal-prompt">
                         root@hackeros:~$
                     </span>
 
@@ -296,14 +380,334 @@
 
                 </div>
 
+
             </div>
 
         </section>
 
 
-        <!-- TASKBAR -->
 
-        <footer class="taskbar">
+        <!-- ==================================================
+             SYSTEM MONITOR
+        ================================================== -->
+
+        <section
+            id="monitorWindow"
+            class="app-window monitor-window"
+        >
+
+
+            <div
+                id="monitorHeader"
+                class="window-header"
+            >
+
+                <div class="window-title">
+
+                    <span class="window-icon">
+                        ⚡
+                    </span>
+
+                    System Monitor
+
+                </div>
+
+
+                <div class="window-controls">
+
+                    <button
+                        id="monitorMinimize"
+                        class="window-control"
+                    >
+                        −
+                    </button>
+
+                    <button
+                        id="monitorClose"
+                        class="window-control close"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="monitor-content">
+
+
+                <!-- CPU -->
+
+                <div class="stat">
+
+                    <div class="stat-header">
+
+                        <span>
+                            CPU USAGE
+                        </span>
+
+                        <span id="cpuValue">
+                            0%
+                        </span>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            id="cpuBar"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MEMORY -->
+
+                <div class="stat">
+
+                    <div class="stat-header">
+
+                        <span>
+                            MEMORY
+                        </span>
+
+                        <span id="memoryValue">
+                            0%
+                        </span>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            id="memoryBar"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- NETWORK -->
+
+                <div class="stat">
+
+                    <div class="stat-header">
+
+                        <span>
+                            NETWORK
+                        </span>
+
+                        <span id="networkValue">
+                            0%
+                        </span>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            id="networkBar"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DISK -->
+
+                <div class="stat">
+
+                    <div class="stat-header">
+
+                        <span>
+                            DISK
+                        </span>
+
+                        <span id="diskValue">
+                            0%
+                        </span>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            id="diskBar"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EXTRA SYSTEM INFORMATION -->
+
+                <div class="monitor-info">
+
+
+                    <div class="info-box">
+
+                        <span>
+                            PROCESSES
+                        </span>
+
+                        <strong id="processCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span>
+                            TEMPERATURE
+                        </span>
+
+                        <strong id="temperature">
+                            0°C
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span>
+                            UPTIME
+                        </span>
+
+                        <strong id="uptime">
+                            00:00:00
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="monitor-status">
+
+                    ● SYSTEM MONITORING ACTIVE
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             COMING SOON WINDOW
+        ================================================== -->
+
+        <section
+            id="comingSoonWindow"
+            class="app-window coming-soon-window"
+        >
+
+
+            <div
+                id="comingSoonHeader"
+                class="window-header"
+            >
+
+                <div class="window-title">
+
+                    <span class="window-icon">
+                        &gt;_
+                    </span>
+
+                    HackerOS Application
+
+                </div>
+
+
+                <div class="window-controls">
+
+                    <button
+                        id="comingSoonClose"
+                        class="window-control close"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="coming-soon-content">
+
+
+                <div class="coming-soon-symbol">
+                    [ ]
+                </div>
+
+
+                <div class="coming-soon-title">
+                    COMING SOON
+                </div>
+
+
+                <div
+                    id="comingSoonApp"
+                    class="coming-soon-app"
+                >
+                    APPLICATION
+                </div>
+
+
+                <div class="coming-soon-line">
+                    ─────────────────────────
+                </div>
+
+
+                <p>
+                    This module is currently under development.
+                </p>
+
+
+                <p class="coming-soon-status">
+
+                    STATUS:
+
+                    <span>
+                        DEVELOPMENT
+                    </span>
+
+                </p>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             TASKBAR
+        ================================================== -->
+
+        <div class="taskbar">
 
             <div class="taskbar-left">
 
@@ -312,36 +716,33 @@
                 </div>
 
                 <span>
-                    HackerOS
+                    HACKEROS
                 </span>
 
             </div>
 
 
-            <div class="taskbar-center">
+            <div class="taskbar-status">
 
                 <span>
-                    SECURE SESSION
+                    SECURE
                 </span>
-
-            </div>
-
-
-            <div class="taskbar-right">
 
                 <span>
-                    USER: ROOT
+                    ROOT
                 </span>
 
-                <span class="taskbar-status">
-                    ●
+                <span>
+                    ONLINE
                 </span>
 
             </div>
 
-        </footer>
+        </div>
 
-    </main>
+
+    </section>
+
 
 
     <script src="script.js"></script>
