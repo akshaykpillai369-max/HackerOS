@@ -1,242 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HackerOS</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-body{font-family:"Courier New",monospace}
-.window{box-shadow:8px 8px 0 rgba(0,0,0,.35)}
-.icon:hover{background:rgba(255,255,255,.05)}
-.icon:hover .symbol{border-color:#b7ffce;color:#b7ffce}
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-thumb{background:#365342}
-::-webkit-scrollbar-track{background:#101612}
-
-
-#bootScreen {
-    font-family: "Courier New", monospace;
-}
-
-#bootScreen .line {
-    transition: opacity 0.3s ease;
-}
-
-#bootScreen .line.active {
-    opacity: 1;
-}
-
-#bootScreen .line.completed {
-    opacity: 0.7;
-}
-
-#bootScreen button {
-    transition: color 0.2s ease, opacity 0.2s ease;
-}
-#enterButton span {
-    animation: blink 1s steps(1) infinite;
-}
-
-@keyframes blink {
-    50% {
-        opacity: 0;
-    }
-}
-#bootScreen {
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,0.015) 1px,
-            transparent 1px
-        );
-    background-size: 100% 4px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HackerOS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="m-0 overflow-hidden bg-[#020604] font-mono text-[#00ff66]">
+<body class="bg-zinc-950 font-mono text-emerald-500">
 
-<section id="bootScreen" class="flex h-screen flex-col bg-[#020604] p-8 text-[#9cffb7]">
+  <section id="bootScreen" class="flex h-screen items-center justify-center p-6 text-emerald-400">
+    <div class="w-full max-w-md space-y-6">
+      <div>
+        <div class="text-xs tracking-widest text-emerald-700">WELCOME TO</div>
+        <h1 class="mt-2 text-4xl font-bold tracking-wider text-white">
+          HACKER<span class="text-emerald-500">OS</span>
+        </h1>
+        <p class="mt-2 text-sm text-zinc-400">
+          A minimal web operating system built for curious minds.
+        </p>
+      </div>
 
-   
-    <header class="flex items-start justify-between border-b border-[#26372c] pb-4">
-        <div>
-            <div class="text-sm font-bold tracking-[4px] text-white">
-                HACKEROS
-            </div>
+      <div class="flex items-center justify-between border-t border-zinc-800 pt-6">
+        <span class="text-xs text-zinc-600">v1.0.0</span>
+        <button id="enterButton" class="text-sm font-bold tracking-wider text-emerald-500 transition hover:text-emerald-300">
+          ENTER SYSTEM &gt;_
+        </button>
+      </div>
+    </div>
+  </section>
 
-            <div class="mt-1 text-[10px] tracking-widest text-[#53695a]">
-                BOOT ENVIRONMENT
-            </div>
-        </div>
+  <section id="desktop" class="relative hidden h-screen overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('kali.jpg');">
 
-        <div class="text-right text-[10px] text-[#53695a]">
-            <div>VERSION 1.0.0</div>
-            <div class="mt-1">SECURE BOOT</div>
-        </div>
+    <div class="absolute inset-0 bg-zinc-950/80"></div>
+
+    <header class="relative z-10 flex h-12 w-full items-center justify-between border-b border-zinc-800 bg-zinc-900/90 px-4 text-xs backdrop-blur-sm">
+      <div class="font-bold tracking-wider text-white">&gt;_ HACKER<span class="text-emerald-500">OS</span></div>
+      <div class="flex items-center gap-4 text-zinc-400">
+        <span class="text-emerald-500">● ONLINE</span>
+        <span id="clock">00:00:00</span>
+      </div>
     </header>
 
+    <div class="absolute left-4 top-16 z-10 flex flex-col gap-3">
+      <button class="icon flex w-16 cursor-pointer flex-col items-center gap-1 text-center" data-app="terminal">
+        <div class="flex h-10 w-10 items-center justify-center rounded border border-zinc-700 bg-zinc-900/80 text-emerald-400 backdrop-blur-sm">&gt;_</div>
+        <span class="text-xs">Terminal</span>
+      </button>
 
-    <!-- Boot content -->
-    <main class="flex flex-1 items-center">
+      <button class="icon flex w-16 cursor-pointer flex-col items-center gap-1 text-center" data-app="network">
+        <div class="flex h-10 w-10 items-center justify-center rounded border border-zinc-700 bg-zinc-900/80 text-emerald-400 backdrop-blur-sm">◉</div>
+        <span class="text-xs">Network</span>
+      </button>
 
-        <div class="w-full max-w-3xl">
+      <button class="icon flex w-16 cursor-pointer flex-col items-center gap-1 text-center" data-app="editor">
+        <div class="flex h-10 w-10 items-center justify-center rounded border border-zinc-700 bg-zinc-900/80 text-emerald-400 backdrop-blur-sm">&lt;/&gt;</div>
+        <span class="text-xs">Editor</span>
+      </button>
 
-            <div class="mb-8 flex items-end justify-between border-b border-[#26372c] pb-3">
-                <div>
-                    <div class="text-xs tracking-[3px] text-[#53695a]">
-                        SYSTEM INITIALIZATION
-                    </div>
+      <button class="icon flex w-16 cursor-pointer flex-col items-center gap-1 text-center" data-app="monitor">
+        <div class="flex h-10 w-10 items-center justify-center rounded border border-zinc-700 bg-zinc-900/80 text-emerald-400 backdrop-blur-sm">⚡</div>
+        <span class="text-xs">Monitor</span>
+      </button>
 
-                    <div class="mt-2 text-2xl font-bold tracking-widest text-white">
-                        BOOT SEQUENCE
-                    </div>
-                </div>
-
-                <div class="text-[10px] text-[#53695a]">
-                    01 / 01
-                </div>
-            </div>
-
-
-            <!-- Boot messages -->
-            <div class="space-y-3 border-l border-[#365342] pl-5">
-
-                <p class="line text-sm text-[#8affb5] opacity-25">
-                    <span class="mr-3 text-[#00ff66]">[ OK ]</span>
-                    <span class="message"></span>
-                </p>
-
-                <p class="line text-sm text-[#8affb5] opacity-25">
-                    <span class="mr-3 text-[#00ff66]">[ OK ]</span>
-                    <span class="message"></span>
-                </p>
-
-                <p class="line text-sm text-[#8affb5] opacity-25">
-                    <span class="mr-3 text-[#00ff66]">[ OK ]</span>
-                    <span class="message"></span>
-                </p>
-
-                <p class="line text-sm text-[#8affb5] opacity-25">
-                    <span class="mr-3 text-[#00ff66]">[ OK ]</span>
-                    <span class="message"></span>
-                </p>
-
-                <p class="line text-sm text-[#8affb5] opacity-25">
-                    <span class="mr-3 text-[#00ff66]">[ OK ]</span>
-                    <span class="message"></span>
-                </p>
-
-            </div>
-
-
-            <!-- Enter system -->
-            <div class="mt-12 flex items-center justify-between border-t border-[#26372c] pt-5">
-
-                <div class="text-xs text-[#53695a]">
-                    SYSTEM STATUS:
-                    <span class="text-[#9cffb7]">
-                        INITIALIZING
-                    </span>
-                </div>
-
-                <button
-                    id="enterButton"
-                    disabled
-                    class="font-mono text-sm font-bold tracking-widest text-[#00ff66] disabled:cursor-not-allowed 
-                    disabled:opacity-20 enabled:hover:text-white"
-                >
-                    &gt; ENTER SYSTEM<span class="ml-1">_</span>
-                </button>
-
-            </div>
-
+      <button class="icon flex w-16 cursor-pointer flex-col items-center gap-1 text-center" data-app="password">
+        <div class="flex h-10 w-10 items-center justify-center rounded border border-zinc-700 bg-zinc-900/80 text-emerald-400 backdrop-blur-sm">🔑</div>
+        <span class="text-xs">Password</span>
+      </button>
+    </div>
+    <section id="terminalWindow" class="window absolute left-1/2 top-20 z-20 hidden h-96 w-full max-w-xl -translate-x-1/2 rounded border border-zinc-700 bg-zinc-900/95 shadow-xl backdrop-blur-sm">
+      <div id="terminalHeader" class="flex h-9 cursor-move items-center justify-between border-b border-zinc-800 bg-zinc-950/80 px-3 text-xs text-zinc-400">
+        <span>&gt;_ terminal</span>
+        <div class="flex items-center gap-1">
+          <button id="terminalMinimize" class="flex h-6 w-6 items-center justify-center rounded text-base hover:bg-zinc-800 hover:text-white">−</button>
+          <button id="terminalClose" class="flex h-6 w-6 items-center justify-center rounded text-lg hover:bg-red-500/20 hover:text-red-400">×</button>
         </div>
+      </div>
+      <div id="terminalContent" class="h-[calc(100%-2.25rem)] overflow-y-auto p-4 text-xs">
+        <div class="mb-4">
+          <div class="font-bold text-emerald-400">HACKEROS TERMINAL</div>
+          <div class="text-zinc-500">Type "help" to see available commands.</div>
+        </div>
+        <div class="terminal-output"></div>
+        <div class="mt-2 flex items-center gap-2">
+          <span class="whitespace-nowrap text-emerald-400">root@hackeros:~$</span>
+          <input id="terminalInput" class="w-full bg-transparent text-white outline-none" autocomplete="off" />
+        </div>
+      </div>
+    </section>
 
-    </main>
 
-    <footer class="flex items-center justify-between border-t border-[#26372c] pt-4 text-[10px] text-[#53695a]">
+    <section id="passWindow" class="window absolute left-1/2 top-24 z-20 hidden w-80 max-w-full -translate-x-1/2 rounded border border-zinc-700 bg-zinc-900/95 p-4 text-xs shadow-xl backdrop-blur-sm">
+      <div id="passHeader" class="mb-4 flex cursor-move items-center justify-between border-b border-zinc-800 pb-2 font-bold text-emerald-400">
+        <span>&gt;_ Password Generator</span>
+        <button id="passClose" class="flex h-6 w-6 items-center justify-center rounded text-lg text-zinc-400 hover:bg-red-500/20 hover:text-red-400">×</button>
+      </div>
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <label for="passLength">Password length:</label>
+          <input id="passLength" type="number" min="4" max="32" value="16" class="w-16 rounded border border-zinc-700 bg-zinc-950 p-1 text-center text-emerald-400 outline-none">
+        </div>
+        <label class="flex cursor-pointer items-center gap-2"><input id="includeUppercase" type="checkbox" checked> Uppercase</label>
+        <label class="flex cursor-pointer items-center gap-2"><input id="includeNumbers" type="checkbox" checked> Numbers</label>
+        <label class="flex cursor-pointer items-center gap-2"><input id="includeSymbols" type="checkbox" checked> Symbols</label>
+        <button id="generatePass" class="w-full rounded border border-emerald-500 py-2 font-bold text-emerald-400 transition hover:bg-emerald-500 hover:text-zinc-950">GENERATE</button>
+        <div class="flex items-center justify-between rounded border border-zinc-800 bg-zinc-950 p-2">
+          <div id="passOutput" class="break-all text-emerald-400">---</div>
+          <button id="copy" class="ml-2 rounded border border-zinc-700 px-2 py-1 text-zinc-300 hover:bg-zinc-800">COPY</button>
+        </div>
+      </div>
+    </section>
 
-        <span>
-            HACKEROS // TERMINAL ENVIRONMENT
-        </span>
+    <section id="monitorWindow" class="window absolute left-1/2 top-24 z-20 hidden w-96 max-w-full -translate-x-1/2 rounded border border-zinc-700 bg-zinc-900/95 shadow-xl backdrop-blur-sm">
+      <div id="monitorHeader" class="flex h-9 cursor-move items-center justify-between border-b border-zinc-800 bg-zinc-950/80 px-3 text-xs">
+        <span>⚡ System Monitor</span>
+        <div class="flex items-center gap-1">
+          <button id="monitorMinimize" class="flex h-6 w-6 items-center justify-center rounded text-base hover:bg-zinc-800 hover:text-white">−</button>
+          <button id="monitorClose" class="flex h-6 w-6 items-center justify-center rounded text-lg hover:bg-red-500/20 hover:text-red-400">×</button>
+        </div>
+      </div>
+      <div class="space-y-4 p-4 text-xs">
+        <div class="space-y-3">
+          <div>
+            <div class="mb-1 flex justify-between"><span>CPU</span><span id="cpuValue">0%</span></div>
+            <div class="h-1.5 w-full overflow-hidden rounded bg-zinc-800"><div id="cpuBar" class="h-full w-0 bg-emerald-500"></div></div>
+          </div>
+          <div>
+            <div class="mb-1 flex justify-between"><span>MEMORY</span><span id="memoryValue">0%</span></div>
+            <div class="h-1.5 w-full overflow-hidden rounded bg-zinc-800"><div id="memoryBar" class="h-full w-0 bg-emerald-500"></div></div>
+          </div>
+          <div>
+            <div class="mb-1 flex justify-between"><span>NETWORK</span><span id="networkValue">0%</span></div>
+            <div class="h-1.5 w-full overflow-hidden rounded bg-zinc-800"><div id="networkBar" class="h-full w-0 bg-emerald-500"></div></div>
+          </div>
+          <div>
+            <div class="mb-1 flex justify-between"><span>DISK</span><span id="diskValue">0%</span></div>
+            <div class="h-1.5 w-full overflow-hidden rounded bg-zinc-800"><div id="diskBar" class="h-full w-0 bg-emerald-500"></div></div>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-2 border-t border-zinc-800 pt-3 text-center text-zinc-400">
+          <div>PROCESSES<br><b id="processCount" class="text-white">0</b></div>
+          <div>TEMP<br><b id="temperature" class="text-white">0°C</b></div>
+          <div>UPTIME<br><b id="uptime" class="text-white">00:00:00</b></div>
+        </div>
+      </div>
+    </section>
 
-        <span>
-            ROOT // ONLINE
-        </span>
 
+    <section id="comingSoonWindow" class="window absolute left-1/2 top-32 z-20 hidden w-80 max-w-full -translate-x-1/2 rounded border border-zinc-700 bg-zinc-900/95 shadow-xl backdrop-blur-sm">
+      <div id="comingSoonHeader" class="flex h-9 cursor-move items-center justify-between border-b border-zinc-800 bg-zinc-950/80 px-3 text-xs">
+        <span>&gt;_ application</span>
+        <button id="comingSoonClose" class="flex h-6 w-6 items-center justify-center rounded text-lg hover:bg-red-500/20 hover:text-red-400">×</button>
+      </div>
+      <div class="flex h-48 flex-col items-center justify-center space-y-2 p-4 text-center">
+        <b class="text-lg tracking-widest text-emerald-400">COMING SOON</b>
+        <div id="comingSoonApp" class="text-xs uppercase text-zinc-400">APPLICATION</div>
+        <p class="text-xs text-zinc-500">This module is under development.</p>
+      </div>
+    </section>
+
+    <footer class="absolute bottom-0 left-0 z-10 flex h-8 w-full items-center justify-between border-t border-zinc-800 bg-zinc-900/90 px-4 text-xs text-zinc-500 backdrop-blur-sm">
+      <span>HACKEROS</span>
+      <div class="flex gap-3">
+        <span class="font-semibold text-emerald-500">SECURE</span>
+        <span>ROOT</span>
+      </div>
     </footer>
 
-</section>
+  </section>
 
-<section id="desktop" class="relative hidden h-screen overflow-hidden bg-cover bg-center bg-no-repeat" 
-style="background-image:url('kali.jpg');">
-
-<div class="absolute inset-0 bg-[#07100a99]"></div>
-
-<header class="absolute left-0 top-0 z-30 flex h-14 w-full items-center justify-between border-b border-[#53695a] bg-[#0b100df2] px-5">
-
-<div class="text-sm font-bold tracking-widest text-white">>_ HACKER<span class="text-[#9cffb7]">OS</span></div>
-
-<div class="text-[10px] text-[#849889]"><span class="text-[#9cffb7]">● ONLINE</span> <span id="clock" class="ml-4">00:00:00</span></div>
-
-</header>
-
-<div class="absolute left-5 top-20 z-10 flex flex-col gap-2">
-<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" 
-data-app="terminal"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">&gt;_</div><div class="text-[10px] text-[#cbd8ce]">Terminal</div></div>
-<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" 
-data-app="network"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">◉</div><div class="text-[10px] text-[#cbd8ce]">Network</div></div>
-<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" 
-data-app="editor"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">&lt;/&gt;</div><div class="text-[10px] text-[#cbd8ce]">Editor</div></div>
-<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" 
-data-app="monitor"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">⚡</div><div class="text-[10px] text-[#cbd8ce]">Monitor</div></div>
-<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" 
-data-app="password"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">🔑</div><div class="text-[10px] text-[#cbd8ce]">Password</div></div>
-</div>
-
-<section id="terminalWindow" class="window absolute left-1/2 top-24 z-40 hidden h-[430px] w-[650px] max-w-[92vw] -translate-x-1/2 border border-[#526858] bg-[#0d130f]">
-<div id="terminalHeader" class="flex h-10 cursor-move items-center justify-between border-b border-[#34483a] bg-[#141b16] px-3"><span class="text-xs text-[#c6d5ca]">&gt;_ terminal</span><div><button id="terminalMinimize">−</button><button id="terminalClose" class="ml-1">×</button></div></div>
-<div id="terminalContent" class="h-[387px] overflow-y-auto p-4 text-xs text-[#aab9ae]">
-<div class="mb-5"><div class="text-[#9cffb7]">HACKEROS TERMINAL</div><small class="text-[#657669]">Type "help" to see available commands.</small></div>
-<div class="terminal-output"></div>
-<div class="mt-2 flex"><span class="whitespace-nowrap text-[#9cffb7]">root@hackeros:~$</span><input id="terminalInput" class="ml-2 min-w-0 flex-1 bg-transparent text-white outline-none" autocomplete="off"></div>
-</div>
-</section>
-
-<section id="passWindow" class="window absolute left-1/2 top-28 z-40 hidden w-[400px] max-w-[92vw] -translate-x-1/2 border border-[#526858] bg-[#0d130f] p-4 text-xs text-[#aab9ae]">
-<div id="passHeader" class="mb-4 flex cursor-move items-center justify-between border-b border-[#34483a] pb-2 text-[#9cffb7]"><b>&gt;_ Password Generator</b><button id="passClose">×</button></div>
-<div class="flex flex-col gap-3">
-<div class="flex justify-between"><label>Password length:</label><input id="passLength" type="number" min="4" max="32" value="16" class="w-16 border border-[#34483a] bg-[#111712] p-1 text-center text-[#9cffb7]"></div>
-<label><input id="includeUppercase" type="checkbox" checked> Uppercase</label>
-<label><input id="includeNumbers" type="checkbox" checked> Numbers</label>
-<label><input id="includeSymbols" type="checkbox" checked> Symbols</label>
-<button id="generatePass" class="border border-[#00ff66] py-2 font-bold text-[#00ff66] hover:bg-[#00ff66] hover:text-[#020604]">GENERATE</button>
-<div class="flex justify-between border border-[#34483a] bg-[#111712] p-2"><div id="passOutput" class="break-all text-[#9cffb7]">---</div><button id="copy" class="ml-2 border border-[#3b5041] px-2">COPY</button></div>
-</div>
-</section>
-
-<section id="monitorWindow" class="window absolute left-1/2 top-28 z-40 hidden w-[500px] max-w-[92vw] -translate-x-1/2 border border-[#526858] bg-[#0d130f]">
-<div id="monitorHeader" class="flex h-10 cursor-move items-center justify-between border-b border-[#34483a] bg-[#141b16] px-3"><span>⚡ system monitor</span><div><button id="monitorMinimize">−</button><button id="monitorClose">×</button></div></div>
-<div class="p-5">
-<div class="space-y-5">
-<div><div class="flex justify-between text-[10px]">CPU <span id="cpuValue">0%</span></div><div class="h-2 bg-[#182019]"><div id="cpuBar" class="h-full bg-[#789783]"></div></div></div>
-<div><div class="flex justify-between text-[10px]">MEMORY <span id="memoryValue">0%</span></div><div class="h-2 bg-[#182019]"><div id="memoryBar" class="h-full bg-[#789783]"></div></div></div>
-<div><div class="flex justify-between text-[10px]">NETWORK <span id="networkValue">0%</span></div><div class="h-2 bg-[#182019]"><div id="networkBar" class="h-full bg-[#789783]"></div></div></div>
-<div><div class="flex justify-between text-[10px]">DISK <span id="diskValue">0%</span></div><div class="h-2 bg-[#182019]"><div id="diskBar" class="h-full bg-[#789783]"></div></div></div>
-</div>
-<div class="mt-6 grid grid-cols-3 gap-2 text-center"><div>PROCESSES<br><b id="processCount">0</b></div><div>TEMP<br><b id="temperature">0°C</b></div><div>UPTIME<br><b id="uptime">00:00:00</b></div></div>
-<div class="mt-5 text-center text-[#9cffb7]">● SYSTEM MONITORING ACTIVE</div>
-</div>
-</section>
-
-<section id="comingSoonWindow" class="window absolute left-1/2 top-36 z-40 hidden w-[500px] max-w-[92vw] -translate-x-1/2 border border-[#526858] bg-[#0d130f]">
-<div id="comingSoonHeader" class="flex h-10 cursor-move items-center justify-between border-b border-[#34483a] bg-[#141b16] px-3"><span>&gt;_ application</span><button id="comingSoonClose">×</button></div>
-<div class="flex h-64 flex-col items-center justify-center text-center"><div class="text-3xl text-[#9cffb7]">[ ]</div><b class="text-lg tracking-widest text-[#9cffb7]">COMING SOON</b><div id="comingSoonApp" class="mt-1 text-xs text-[#789783]">APPLICATION</div><p class="text-[11px]">This module is currently under development.</p></div>
-</section>
-
-<footer class="absolute bottom-0 left-0 z-50 flex h-12 w-full items-center justify-between border-t border-[#53695a] bg-[#0b100df2] px-5 text-[10px]"><span>HACKEROS</span><span class="text-[#657669]"><b class="text-[#9cffb7]">SECURE</b>　ROOT　ONLINE</span></footer>
-</section>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
