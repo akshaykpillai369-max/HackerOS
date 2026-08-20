@@ -13,30 +13,163 @@ body{font-family:"Courier New",monospace}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-thumb{background:#365342}
 ::-webkit-scrollbar-track{background:#101612}
+
+
+#bootScreen {
+    font-family: "Courier New", monospace;
+}
+
+#bootScreen .line {
+    transition: opacity 0.3s ease;
+}
+
+#bootScreen .line.active {
+    opacity: 1;
+}
+
+#bootScreen .line.completed {
+    opacity: 0.7;
+}
+
+#bootScreen button {
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+#enterButton span {
+    animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+#bootScreen {
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.015) 1px,
+            transparent 1px
+        );
+    background-size: 100% 4px;
+}
 </style>
 </head>
 <body class="m-0 overflow-hidden bg-[#020604] font-mono text-[#00ff66]">
 
-<section id="bootScreen" class="flex h-screen items-center justify-center bg-[#020604]">
-<div class="w-[min(650px,90%)] rounded-lg border border-[#0a7d3b] bg-[#000f07] p-10 text-center shadow-[0_0_30px_rgba(0,255,102,.25)]">
-<div class="flex items-center justify-center gap-4">
-<div class="text-4xl font-bold">&gt;_</div>
-<h1 class="text-5xl font-bold tracking-[5px] text-white">HACKER<span class="text-[#00ff66]">OS</span></h1>
-</div>
-<div class="mt-2 text-xs tracking-[5px] text-[#00aa44]">SECURE // PRIVATE // POWERFUL</div>
-<div class="mx-auto my-10 max-w-[520px] border-l-2 border-[#00ff66] bg-[#00000059] p-5 text-left">
-<p class="line my-2 text-sm text-[#8affb5] opacity-25"><span class="text-[#00ff66]">[+]</span> <span class="message"></span></p>
-<p class="line my-2 text-sm text-[#8affb5] opacity-25"><span class="text-[#00ff66]">[+]</span> <span class="message"></span></p>
-<p class="line my-2 text-sm text-[#8affb5] opacity-25"><span class="text-[#00ff66]">[+]</span> <span class="message"></span></p>
-<p class="line my-2 text-sm text-[#8affb5] opacity-25"><span class="text-[#00ff66]">[+]</span> <span class="message"></span></p>
-<p class="line my-2 text-sm text-[#8affb5] opacity-25"><span class="text-[#00ff66]">[+]</span> <span class="message"></span></p>
-</div>
-<button id="enterButton" disabled class="border border-[#00ff66] bg-transparent px-7 py-3 text-sm font-bold tracking-widest text-[#00ff66] disabled:opacity-25 enabled:hover:bg-[#00ff66] enabled:hover:text-[#020604]">ENTER SYSTEM</button>
-<div class="mt-7 text-[11px] text-[#267346]">HACKEROS v1.0.0 // SECURE BOOT</div>
-</div>
+<section id="bootScreen" class="flex h-screen flex-col bg-[#020604] p-8 text-[#9cffb7]">
+
+   
+    <header class="flex items-start justify-between border-b border-[#26372c] pb-4">
+        <div>
+            <div class="text-sm font-bold tracking-[4px] text-white">
+                HACKEROS
+            </div>
+
+            <div class="mt-1 text-[10px] tracking-widest text-[#53695a]">
+                BOOT ENVIRONMENT
+            </div>
+        </div>
+
+        <div class="text-right text-[10px] text-[#53695a]">
+            <div>VERSION 1.0.0</div>
+            <div class="mt-1">SECURE BOOT</div>
+        </div>
+    </header>
+
+
+    <!-- Boot content -->
+    <main class="flex flex-1 items-center">
+
+        <div class="w-full max-w-3xl">
+
+            <div class="mb-8 flex items-end justify-between border-b border-[#26372c] pb-3">
+                <div>
+                    <div class="text-xs tracking-[3px] text-[#53695a]">
+                        SYSTEM INITIALIZATION
+                    </div>
+
+                    <div class="mt-2 text-2xl font-bold tracking-widest text-white">
+                        BOOT SEQUENCE
+                    </div>
+                </div>
+
+                <div class="text-[10px] text-[#53695a]">
+                    01 / 01
+                </div>
+            </div>
+
+
+            <!-- Boot messages -->
+            <div class="space-y-3 border-l border-[#365342] pl-5">
+
+                <p class="line text-sm text-[#8affb5] opacity-25">
+                    <span class="mr-3 text-[#00ff66]">[ OK ]</span>
+                    <span class="message"></span>
+                </p>
+
+                <p class="line text-sm text-[#8affb5] opacity-25">
+                    <span class="mr-3 text-[#00ff66]">[ OK ]</span>
+                    <span class="message"></span>
+                </p>
+
+                <p class="line text-sm text-[#8affb5] opacity-25">
+                    <span class="mr-3 text-[#00ff66]">[ OK ]</span>
+                    <span class="message"></span>
+                </p>
+
+                <p class="line text-sm text-[#8affb5] opacity-25">
+                    <span class="mr-3 text-[#00ff66]">[ OK ]</span>
+                    <span class="message"></span>
+                </p>
+
+                <p class="line text-sm text-[#8affb5] opacity-25">
+                    <span class="mr-3 text-[#00ff66]">[ OK ]</span>
+                    <span class="message"></span>
+                </p>
+
+            </div>
+
+
+            <!-- Enter system -->
+            <div class="mt-12 flex items-center justify-between border-t border-[#26372c] pt-5">
+
+                <div class="text-xs text-[#53695a]">
+                    SYSTEM STATUS:
+                    <span class="text-[#9cffb7]">
+                        INITIALIZING
+                    </span>
+                </div>
+
+                <button
+                    id="enterButton"
+                    disabled
+                    class="font-mono text-sm font-bold tracking-widest text-[#00ff66] disabled:cursor-not-allowed 
+                    disabled:opacity-20 enabled:hover:text-white"
+                >
+                    &gt; ENTER SYSTEM<span class="ml-1">_</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="flex items-center justify-between border-t border-[#26372c] pt-4 text-[10px] text-[#53695a]">
+
+        <span>
+            HACKEROS // TERMINAL ENVIRONMENT
+        </span>
+
+        <span>
+            ROOT // ONLINE
+        </span>
+
+    </footer>
+
 </section>
 
-<section id="desktop" class="relative hidden h-screen overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image:url('kali.jpg');">
+<section id="desktop" class="relative hidden h-screen overflow-hidden bg-cover bg-center bg-no-repeat" 
+style="background-image:url('kali.jpg');">
 
 <div class="absolute inset-0 bg-[#07100a99]"></div>
 
@@ -49,11 +182,16 @@ body{font-family:"Courier New",monospace}
 </header>
 
 <div class="absolute left-5 top-20 z-10 flex flex-col gap-2">
-<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" data-app="terminal"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">&gt;_</div><div class="text-[10px] text-[#cbd8ce]">Terminal</div></div>
-<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" data-app="network"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">◉</div><div class="text-[10px] text-[#cbd8ce]">Network</div></div>
-<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" data-app="editor"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">&lt;/&gt;</div><div class="text-[10px] text-[#cbd8ce]">Editor</div></div>
-<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" data-app="monitor"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">⚡</div><div class="text-[10px] text-[#cbd8ce]">Monitor</div></div>
-<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" data-app="password"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">🔑</div><div class="text-[10px] text-[#cbd8ce]">Password</div></div>
+<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" 
+data-app="terminal"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">&gt;_</div><div class="text-[10px] text-[#cbd8ce]">Terminal</div></div>
+<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" 
+data-app="network"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">◉</div><div class="text-[10px] text-[#cbd8ce]">Network</div></div>
+<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" 
+data-app="editor"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">&lt;/&gt;</div><div class="text-[10px] text-[#cbd8ce]">Editor</div></div>
+<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" 
+data-app="monitor"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">⚡</div><div class="text-[10px] text-[#cbd8ce]">Monitor</div></div>
+<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" 
+data-app="password"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">🔑</div><div class="text-[10px] text-[#cbd8ce]">Password</div></div>
 </div>
 
 <section id="terminalWindow" class="window absolute left-1/2 top-24 z-40 hidden h-[430px] w-[650px] max-w-[92vw] -translate-x-1/2 border border-[#526858] bg-[#0d130f]">
