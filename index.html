@@ -1,268 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HackerOS</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HackerOS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{font-family:"Courier New",monospace}
+.window{box-shadow:8px 8px 0 rgba(0,0,0,.35)}
+.icon:hover{background:rgba(255,255,255,.05)}
+.icon:hover .symbol{border-color:#b7ffce;color:#b7ffce}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:#365342}
+::-webkit-scrollbar-track{background:#101612}
+</style>
 </head>
+<body class="m-0 overflow-hidden bg-[#020604] font-mono text-[#00ff66]">
 
-<body>
-    <section id="bootScreen" class="boot-screen">
-        <div class="boot-container">
+<section id="bootScreen" class="flex h-screen items-center justify-center bg-[#020604]">
+<div class="w-[min(650px,90%)] rounded-lg border border-[#0a7d3b] bg-[#000f07] p-10 text-center shadow-[0_0_30px_rgba(0,255,102,.25)]">
+<div class="flex items-center justify-center gap-4">
+<div class="text-4xl font-bold">&gt;_</div>
+<h1 class="text-5xl font-bold tracking-[5px] text-white">HACKER<span class="text-[#00ff66]">OS</span></h1>
+</div>
+<div class="mt-2 text-xs tracking-[5px] text-[#00aa44]">SECURE // PRIVATE // POWERFUL</div>
+<div class="mx-auto my-10 max-w-[520px] border-l-2 border-[#00ff66] bg-[#00000059] p-5 text-left">
+<p class="line my-2 text-sm text-[#8affb5] opacity-25"><span class="text-[#00ff66]">[+]</span> <span class="message"></span></p>
+<p class="line my-2 text-sm text-[#8affb5] opacity-25"><span class="text-[#00ff66]">[+]</span> <span class="message"></span></p>
+<p class="line my-2 text-sm text-[#8affb5] opacity-25"><span class="text-[#00ff66]">[+]</span> <span class="message"></span></p>
+<p class="line my-2 text-sm text-[#8affb5] opacity-25"><span class="text-[#00ff66]">[+]</span> <span class="message"></span></p>
+<p class="line my-2 text-sm text-[#8affb5] opacity-25"><span class="text-[#00ff66]">[+]</span> <span class="message"></span></p>
+</div>
+<button id="enterButton" disabled class="border border-[#00ff66] bg-transparent px-7 py-3 text-sm font-bold tracking-widest text-[#00ff66] disabled:opacity-25 enabled:hover:bg-[#00ff66] enabled:hover:text-[#020604]">ENTER SYSTEM</button>
+<div class="mt-7 text-[11px] text-[#267346]">HACKEROS v1.0.0 // SECURE BOOT</div>
+</div>
+</section>
 
-            <div class="logo">
-                <div class="logo-symbol">&gt;_</div>
-                <h1>HACKER<span>OS</span></h1>
-            </div>
+<section id="desktop" class="relative hidden h-screen overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image:url('kali.jpg');">
 
-            <div class="subtitle">
-                SECURE // PRIVATE // POWERFUL
-            </div>
+<div class="absolute inset-0 bg-[#07100a99]"></div>
 
-            <div class="terminal">
-                <p class="line">
-                    <span>[+]</span>
-                    <span class="message"></span>
-                    <strong>...</strong>
-                </p>
-                <p class="line">
-                    <span>[+]</span>
-                    <span class="message"></span>
-                    <strong>...</strong>
-                </p>
-                <p class="line">
-                    <span>[+]</span>
-                    <span class="message"></span>
-                    <strong>...</strong>
-                </p>
-                <p class="line">
-                    <span>[+]</span>
-                    <span class="message"></span>
-                    <strong>...</strong>
-                </p>
-                <p class="line">
-                    <span>[+]</span>
-                    <span class="message"></span>
-                    <strong>...</strong>
-                </p>
-            </div>
+<header class="absolute left-0 top-0 z-30 flex h-14 w-full items-center justify-between border-b border-[#53695a] bg-[#0b100df2] px-5">
 
-            <button id="enterButton" disabled>
-                ENTER SYSTEM
-            </button>
+<div class="text-sm font-bold tracking-widest text-white">>_ HACKER<span class="text-[#9cffb7]">OS</span></div>
 
-            <div class="version">
-                HACKEROS v1.0.0 // SECURE BOOT
-            </div>
+<div class="text-[10px] text-[#849889]"><span class="text-[#9cffb7]">● ONLINE</span> <span id="clock" class="ml-4">00:00:00</span></div>
 
-        </div>
-    </section>
+</header>
 
-    <section id="desktop" class="desktop">
+<div class="absolute left-5 top-20 z-10 flex flex-col gap-2">
+<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" data-app="terminal"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">&gt;_</div><div class="text-[10px] text-[#cbd8ce]">Terminal</div></div>
+<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" data-app="network"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">◉</div><div class="text-[10px] text-[#cbd8ce]">Network</div></div>
+<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" data-app="editor"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">&lt;/&gt;</div><div class="text-[10px] text-[#cbd8ce]">Editor</div></div>
+<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" data-app="monitor"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">⚡</div><div class="text-[10px] text-[#cbd8ce]">Monitor</div></div>
+<div class="icon flex w-20 cursor-pointer flex-col items-center gap-2 p-2 text-center" data-app="password"><div class="symbol flex h-11 w-11 items-center justify-center border border-[#53695a] bg-[#111712] text-[#9cffb7]">🔑</div><div class="text-[10px] text-[#cbd8ce]">Password</div></div>
+</div>
 
-        <div class="desktop-topbar">
-            <div class="topbar-logo">
-                &gt;_ HACKER<span>OS</span>
-            </div>
+<section id="terminalWindow" class="window absolute left-1/2 top-24 z-40 hidden h-[430px] w-[650px] max-w-[92vw] -translate-x-1/2 border border-[#526858] bg-[#0d130f]">
+<div id="terminalHeader" class="flex h-10 cursor-move items-center justify-between border-b border-[#34483a] bg-[#141b16] px-3"><span class="text-xs text-[#c6d5ca]">&gt;_ terminal</span><div><button id="terminalMinimize">−</button><button id="terminalClose" class="ml-1">×</button></div></div>
+<div id="terminalContent" class="h-[387px] overflow-y-auto p-4 text-xs text-[#aab9ae]">
+<div class="mb-5"><div class="text-[#9cffb7]">HACKEROS TERMINAL</div><small class="text-[#657669]">Type "help" to see available commands.</small></div>
+<div class="terminal-output"></div>
+<div class="mt-2 flex"><span class="whitespace-nowrap text-[#9cffb7]">root@hackeros:~$</span><input id="terminalInput" class="ml-2 min-w-0 flex-1 bg-transparent text-white outline-none" autocomplete="off"></div>
+</div>
+</section>
 
-            <div class="topbar-status">
-                <span>● SYSTEM ONLINE</span>
-                <span id="clock">00:00:00</span>
-            </div>
-        </div>
+<section id="passWindow" class="window absolute left-1/2 top-28 z-40 hidden w-[400px] max-w-[92vw] -translate-x-1/2 border border-[#526858] bg-[#0d130f] p-4 text-xs text-[#aab9ae]">
+<div id="passHeader" class="mb-4 flex cursor-move items-center justify-between border-b border-[#34483a] pb-2 text-[#9cffb7]"><b>&gt;_ Password Generator</b><button id="passClose">×</button></div>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between"><label>Password length:</label><input id="passLength" type="number" min="4" max="32" value="16" class="w-16 border border-[#34483a] bg-[#111712] p-1 text-center text-[#9cffb7]"></div>
+<label><input id="includeUppercase" type="checkbox" checked> Uppercase</label>
+<label><input id="includeNumbers" type="checkbox" checked> Numbers</label>
+<label><input id="includeSymbols" type="checkbox" checked> Symbols</label>
+<button id="generatePass" class="border border-[#00ff66] py-2 font-bold text-[#00ff66] hover:bg-[#00ff66] hover:text-[#020604]">GENERATE</button>
+<div class="flex justify-between border border-[#34483a] bg-[#111712] p-2"><div id="passOutput" class="break-all text-[#9cffb7]">---</div><button id="copy" class="ml-2 border border-[#3b5041] px-2">COPY</button></div>
+</div>
+</section>
 
-        <div class="desktop-apps">
+<section id="monitorWindow" class="window absolute left-1/2 top-28 z-40 hidden w-[500px] max-w-[92vw] -translate-x-1/2 border border-[#526858] bg-[#0d130f]">
+<div id="monitorHeader" class="flex h-10 cursor-move items-center justify-between border-b border-[#34483a] bg-[#141b16] px-3"><span>⚡ system monitor</span><div><button id="monitorMinimize">−</button><button id="monitorClose">×</button></div></div>
+<div class="p-5">
+<div class="space-y-5">
+<div><div class="flex justify-between text-[10px]">CPU <span id="cpuValue">0%</span></div><div class="h-2 bg-[#182019]"><div id="cpuBar" class="h-full bg-[#789783]"></div></div></div>
+<div><div class="flex justify-between text-[10px]">MEMORY <span id="memoryValue">0%</span></div><div class="h-2 bg-[#182019]"><div id="memoryBar" class="h-full bg-[#789783]"></div></div></div>
+<div><div class="flex justify-between text-[10px]">NETWORK <span id="networkValue">0%</span></div><div class="h-2 bg-[#182019]"><div id="networkBar" class="h-full bg-[#789783]"></div></div></div>
+<div><div class="flex justify-between text-[10px]">DISK <span id="diskValue">0%</span></div><div class="h-2 bg-[#182019]"><div id="diskBar" class="h-full bg-[#789783]"></div></div></div>
+</div>
+<div class="mt-6 grid grid-cols-3 gap-2 text-center"><div>PROCESSES<br><b id="processCount">0</b></div><div>TEMP<br><b id="temperature">0°C</b></div><div>UPTIME<br><b id="uptime">00:00:00</b></div></div>
+<div class="mt-5 text-center text-[#9cffb7]">● SYSTEM MONITORING ACTIVE</div>
+</div>
+</section>
 
-            <div class="app-icon" data-app="terminal">
-                <div class="app-icon-symbol">&gt;_</div>
-                <div class="app-name">Terminal</div>
-            </div>
+<section id="comingSoonWindow" class="window absolute left-1/2 top-36 z-40 hidden w-[500px] max-w-[92vw] -translate-x-1/2 border border-[#526858] bg-[#0d130f]">
+<div id="comingSoonHeader" class="flex h-10 cursor-move items-center justify-between border-b border-[#34483a] bg-[#141b16] px-3"><span>&gt;_ application</span><button id="comingSoonClose">×</button></div>
+<div class="flex h-64 flex-col items-center justify-center text-center"><div class="text-3xl text-[#9cffb7]">[ ]</div><b class="text-lg tracking-widest text-[#9cffb7]">COMING SOON</b><div id="comingSoonApp" class="mt-1 text-xs text-[#789783]">APPLICATION</div><p class="text-[11px]">This module is currently under development.</p></div>
+</section>
 
-            <div class="app-icon" data-app="network">
-                <div class="app-icon-symbol">◉</div>
-                <div class="app-name">Network Scanner</div>
-            </div>
+<footer class="absolute bottom-0 left-0 z-50 flex h-12 w-full items-center justify-between border-t border-[#53695a] bg-[#0b100df2] px-5 text-[10px]"><span>HACKEROS</span><span class="text-[#657669]"><b class="text-[#9cffb7]">SECURE</b>　ROOT　ONLINE</span></footer>
+</section>
 
-            <div class="app-icon" data-app="editor">
-                <div class="app-icon-symbol">&lt;/&gt;</div>
-                <div class="app-name">Code Editor</div>
-            </div>
-
-            <div class="app-icon" data-app="monitor">
-                <div class="app-icon-symbol">⚡</div>
-                <div class="app-name">System Monitor</div>
-            </div>
-
-        </div>
-
-        <section id="terminalWindow" class="app-window terminal-window">
-            <div id="terminalHeader" class="window-header">
-                <div class="window-title">
-                    <span class="window-icon">&gt;_</span>
-                    HackerOS Terminal
-                </div>
-
-                <div class="window-controls">
-                    <button id="terminalMinimize" class="window-control">−</button>
-                    <button id="terminalClose" class="window-control close">×</button>
-                </div>
-            </div>
-
-            <div id="terminalContent" class="terminal-content">
-                <div class="terminal-banner">
-<pre>
-        __
-       / /_
-      / __/
-     / /_
-    / __/
-   /_/
-</pre>
-                    <div>HACKEROS TERMINAL</div>
-                    <small>Type "help" to see available commands.</small>
-                </div>
-
-                <div class="terminal-output">
-                    <div>Welcome to HackerOS.</div>
-                    <div>Secure shell initialized.</div>
-                    <br>
-                </div>
-
-                <div class="terminal-input-line">
-                    <span class="terminal-prompt">root@hackeros:~$</span>
-                    <input id="terminalInput" type="text" autocomplete="off" spellcheck="false">
-                </div>
-            </div>
-        </section>
-
-        <section id="monitorWindow" class="app-window monitor-window">
-            <div id="monitorHeader" class="window-header">
-                <div class="window-title">
-                    <span class="window-icon">⚡</span>
-                    System Monitor
-                </div>
-
-                <div class="window-controls">
-                    <button id="monitorMinimize" class="window-control">−</button>
-                    <button id="monitorClose" class="window-control close">×</button>
-                </div>
-            </div>
-
-            <div class="monitor-content">
-
-                <div class="stat">
-                    <div class="stat-header">
-                        <span>CPU USAGE</span>
-                        <span id="cpuValue">0%</span>
-                    </div>
-                    <div class="progress">
-                        <div id="cpuBar" class="progress-bar"></div>
-                    </div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-header">
-                        <span>MEMORY</span>
-                        <span id="memoryValue">0%</span>
-                    </div>
-                    <div class="progress">
-                        <div id="memoryBar" class="progress-bar"></div>
-                    </div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-header">
-                        <span>NETWORK</span>
-                        <span id="networkValue">0%</span>
-                    </div>
-                    <div class="progress">
-                        <div id="networkBar" class="progress-bar"></div>
-                    </div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-header">
-                        <span>DISK</span>
-                        <span id="diskValue">0%</span>
-                    </div>
-                    <div class="progress">
-                        <div id="diskBar" class="progress-bar"></div>
-                    </div>
-                </div>
-
-                <div class="monitor-info">
-                    <div class="info-box">
-                        <span>PROCESSES</span>
-                        <strong id="processCount">0</strong>
-                    </div>
-
-                    <div class="info-box">
-                        <span>TEMPERATURE</span>
-                        <strong id="temperature">0°C</strong>
-                    </div>
-
-                    <div class="info-box">
-                        <span>UPTIME</span>
-                        <strong id="uptime">00:00:00</strong>
-                    </div>
-                </div>
-
-                <div class="monitor-status">
-                    ● SYSTEM MONITORING ACTIVE
-                </div>
-
-            </div>
-        </section>
-
-        <section id="comingSoonWindow" class="app-window coming-soon-window">
-            <div id="comingSoonHeader" class="window-header">
-                <div class="window-title">
-                    <span class="window-icon">&gt;_</span>
-                    HackerOS Application
-                </div>
-
-                <div class="window-controls">
-                    <button id="comingSoonClose" class="window-control close">×</button>
-                </div>
-            </div>
-
-            <div class="coming-soon-content">
-                <div class="coming-soon-symbol">[ ]</div>
-                <div class="coming-soon-title">COMING SOON</div>
-
-                <div id="comingSoonApp" class="coming-soon-app">
-                    APPLICATION
-                </div>
-
-                <div class="coming-soon-line">
-                    ─────────────────────────
-                </div>
-
-                <p>This module is currently under development.</p>
-
-                <p class="coming-soon-status">
-                    STATUS:
-                    <span>DEVELOPMENT</span>
-                </p>
-            </div>
-        </section>
-
-        <div class="taskbar">
-            <div class="taskbar-left">
-                <div class="taskbar-logo">&gt;_</div>
-                <span>HACKEROS</span>
-            </div>
-
-            <div class="taskbar-status">
-                <span>SECURE</span>
-                <span>ROOT</span>
-                <span>ONLINE</span>
-            </div>
-        </div>
-
-    </section>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

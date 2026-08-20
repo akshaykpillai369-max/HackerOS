@@ -1,443 +1,338 @@
-const bootLines = [
-    "Initializing HackerOS...",
-    "Loading kernel...",
-    "Loading security modules...",
-    "Establishing secure session...",
-    "System ready."
-];
+const bootLines=["Initializing HackerOS...","Loading kernel...","Loading security modules...","Establishing secure session...","System ready."];
+const lowercase="abcdefghijklmnopqrstuvwxyz";
+const uppercase="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const numbers="0123456789";
+const symbols="!@#$%^&*()_+-=[]{}|;:,.<>?";
 
-const lines = document.querySelectorAll(".line");
-const enterButton = document.getElementById("enterButton");
-const bootScreen = document.getElementById("bootScreen");
-const desktop = document.getElementById("desktop");
+const lines=document.querySelectorAll(".line");
+const enterButton=document.getElementById("enterButton");
+const bootScreen=document.getElementById("bootScreen");
+const desktop=document.getElementById("desktop");
+let currentLine=0;
 
-let currentLine = 0;
-
-function typeLine() {
-    if (currentLine >= bootLines.length) {
-        enterButton.disabled = false;
-        return;
-    }
-
-    const line = lines[currentLine];
-    const message = line.querySelector(".message");
-    const text = bootLines[currentLine];
-
-    line.classList.add("active");
-
-    let character = 0;
-
-    const typing = setInterval(() => {
-        message.textContent += text[character];
-        character++;
-
-        if (character >= text.length) {
-            clearInterval(typing);
-
-            setTimeout(() => {
-                line.classList.add("completed");
-                currentLine++;
-                setTimeout(typeLine, 700);
-            }, 500);
-        }
-    }, 40);
+function typeLine(){
+if(currentLine>=bootLines.length){enterButton.disabled=false;return}
+const line=lines[currentLine],message=line.querySelector(".message"),text=bootLines[currentLine];
+line.classList.add("active");
+let i=0;
+const typing=setInterval(()=>{
+message.textContent+=text[i++];
+if(i>=text.length){
+clearInterval(typing);
+line.classList.add("completed");
+currentLine++;
+setTimeout(typeLine,500);
+}
+},35);
 }
 
-enterButton.addEventListener("click", () => {
-    bootScreen.style.display = "none";
-    desktop.style.display = "block";
-    updateClock();
+enterButton.addEventListener("click",()=>{
+bootScreen.style.display="none";
+desktop.style.display="block";
 });
 
-const clock = document.getElementById("clock");
+const clock=document.getElementById("clock");
 
-function updateClock() {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    const seconds = String(now.getSeconds()).padStart(2, "0");
-
-    clock.textContent = `${hours}:${minutes}:${seconds}`;
+function updateClock(){
+const now=new Date();
+clock.textContent=`${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}:${String(now.getSeconds()).padStart(2,"0")}`;
 }
 
-setInterval(updateClock, 1000);
+setInterval(updateClock,1000);
+updateClock();
 
-const terminalIcon = document.querySelector('[data-app="terminal"]');
-const terminalWindow = document.getElementById("terminalWindow");
-const terminalHeader = document.getElementById("terminalHeader");
-const terminalClose = document.getElementById("terminalClose");
-const terminalMinimize = document.getElementById("terminalMinimize");
-const terminalInput = document.getElementById("terminalInput");
-const terminalOutput = document.querySelector(".terminal-output");
-const terminalContent = document.getElementById("terminalContent");
+const passIcon=document.querySelector('[data-app="password"]');
+const passWindow=document.getElementById("passWindow");
+const passHeader=document.getElementById("passHeader");
+const passClose=document.getElementById("passClose");
+const passLength=document.getElementById("passLength");
+const includeUppercase=document.getElementById("includeUppercase");
+const includeNumbers=document.getElementById("includeNumbers");
+const includeSymbols=document.getElementById("includeSymbols");
+const generatePass=document.getElementById("generatePass");
+const passOutput=document.getElementById("passOutput");
+const copy=document.getElementById("copy");
 
-terminalIcon.addEventListener("click", () => {
-    terminalWindow.style.display = "block";
-    terminalInput.focus();
+passIcon.addEventListener("click",()=>{
+passWindow.classList.remove("hidden");
 });
 
-terminalClose.addEventListener("click", () => {
-    terminalWindow.style.display = "none";
+passClose.addEventListener("click",()=>{
+passWindow.classList.add("hidden");
 });
 
-terminalMinimize.addEventListener("click", () => {
-    terminalWindow.style.display = "none";
-});
+generatePass.addEventListener("click",()=>{
+let pool=lowercase;
+if(includeUppercase.checked)pool+=uppercase;
+if(includeNumbers.checked)pool+=numbers;
+if(includeSymbols.checked)pool+=symbols;
 
-const history = [];
-let historyIndex = -1;
+const length=Math.min(32,Math.max(4,Number(passLength.value)));
+passLength.value=length;
 
-terminalInput.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-        const command = terminalInput.value.trim();
+let password="";
 
-        if (!command) {
-            return;
-        }
-
-        history.push(command);
-        historyIndex = history.length;
-
-        printCommand(command);
-        runCommand(command);
-
-        terminalInput.value = "";
-    }
-
-    if (event.key === "ArrowUp") {
-        event.preventDefault();
-
-        if (historyIndex > 0) {
-            historyIndex--;
-            terminalInput.value = history[historyIndex];
-        }
-    }
-
-    if (event.key === "ArrowDown") {
-        event.preventDefault();
-
-        if (historyIndex < history.length - 1) {
-            historyIndex++;
-            terminalInput.value = history[historyIndex];
-        } else {
-            historyIndex = history.length;
-            terminalInput.value = "";
-        }
-    }
-});
-
-function printCommand(command) {
-    const line = document.createElement("div");
-
-    line.innerHTML = `
-        <span class="terminal-highlight">root@hackeros:~$</span>
-        ${escapeHTML(command)}
-    `;
-
-    terminalOutput.appendChild(line);
+for(let i=0;i<length;i++){
+password+=pool[Math.floor(Math.random()*pool.length)];
 }
 
-function runCommand(command) {
-    switch (command.toLowerCase()) {
-        case "help":
-            printOutput(`
-Available commands:
+passOutput.textContent=password;
+});
 
-  help       Show available commands
-  clear      Clear terminal
-  whoami     Display current user
-  about      About HackerOS
-  status     Show system status
-  neofetch   Display system information
-            `);
-            break;
+copy.addEventListener("click",async()=>{
+const password=passOutput.textContent;
+if(!password||password==="---")return;
 
-        case "whoami":
-            printOutput("root");
-            break;
+await navigator.clipboard.writeText(password);
 
-        case "about":
-            printOutput(`
-HackerOS
---------
+copy.textContent="COPIED";
 
-A fictional security-focused
-web operating system.
+setTimeout(()=>{
+copy.textContent="COPY";
+},1000);
+});
 
-Version: 1.0.0
-Kernel: HackerKernel
-User: root
-            `);
-            break;
+const terminalIcon=document.querySelector('[data-app="terminal"]');
+const terminalWindow=document.getElementById("terminalWindow");
+const terminalHeader=document.getElementById("terminalHeader");
+const terminalClose=document.getElementById("terminalClose");
+const terminalMinimize=document.getElementById("terminalMinimize");
+const terminalInput=document.getElementById("terminalInput");
+const terminalOutput=document.querySelector(".terminal-output");
+const terminalContent=document.getElementById("terminalContent");
 
-        case "status":
-            printOutput(`
-SYSTEM STATUS
+const history=[];
+let historyIndex=-1;
 
-OS:          ONLINE
-SECURITY:    ACTIVE
-NETWORK:     CONNECTED
-KERNEL:      RUNNING
-SESSION:     SECURE
-            `);
-            break;
+terminalIcon.addEventListener("click",()=>{
+terminalWindow.style.display="block";
+terminalInput.focus();
+});
 
-        case "neofetch":
-            printOutput(`
- _   _    _    ____ _  ______ ____   ___  ____
-| | | |  / \\  / ___| |/ / ___|  _ \\ / _ \\ / ___|
-| |_| | / _ \\| |   | ' /| |   | |_) | | | \\___ \\
-|  _  |/ ___ \\ |___| . \\| |___|  _ <| |_| |___) |
-|_| |_/_/   \\_\\____|_|\\_\\____|_| \\_\\\\___/|____/
+terminalClose.addEventListener("click",()=>{
+terminalWindow.style.display="none";
+});
 
-OS:        HackerOS 1.0
-Kernel:    HackerKernel
-Shell:     HackerShell
-User:      root
-Status:    ONLINE
-            `);
-            break;
+terminalMinimize.addEventListener("click",()=>{
+terminalWindow.style.display="none";
+});
 
-        case "clear":
-            terminalOutput.innerHTML = "";
-            break;
+terminalInput.addEventListener("keydown",event=>{
+if(event.key==="Enter"){
+const command=terminalInput.value.trim();
 
-        default:
-            printOutput(`Command not found: ${command}`);
-    }
+if(!command)return;
+
+history.push(command);
+historyIndex=history.length;
+
+printCommand(command);
+runCommand(command);
+
+terminalInput.value="";
 }
 
-function printOutput(text) {
-    const output = document.createElement("div");
+if(event.key==="ArrowUp"){
+event.preventDefault();
 
-    output.style.whiteSpace = "pre-wrap";
-    output.style.marginBottom = "10px";
-    output.textContent = text;
-
-    terminalOutput.appendChild(output);
-    terminalContent.scrollTop = terminalContent.scrollHeight;
+if(historyIndex>0){
+historyIndex--;
+terminalInput.value=history[historyIndex];
+}
 }
 
-function escapeHTML(text) {
-    const element = document.createElement("div");
-    element.textContent = text;
-    return element.innerHTML;
+if(event.key==="ArrowDown"){
+event.preventDefault();
+
+if(historyIndex<history.length-1){
+historyIndex++;
+terminalInput.value=history[historyIndex];
+}else{
+historyIndex=history.length;
+terminalInput.value="";
+}
+}
+});
+
+function printCommand(command){
+const line=document.createElement("div");
+line.textContent=`root@hackeros:~$ ${command}`;
+terminalOutput.appendChild(line);
+terminalContent.scrollTop=terminalContent.scrollHeight;
 }
 
-let draggingTerminal = false;
-let terminalX = 0;
-let terminalY = 0;
+function printOutput(text){
+const output=document.createElement("div");
 
-terminalHeader.addEventListener("mousedown", (event) => {
-    draggingTerminal = true;
+output.style.whiteSpace="pre-wrap";
+output.style.marginBottom="10px";
+output.textContent=text;
 
-    const rect = terminalWindow.getBoundingClientRect();
-
-    terminalX = event.clientX - rect.left;
-    terminalY = event.clientY - rect.top;
-
-    terminalWindow.style.transform = "none";
-});
-
-document.addEventListener("mousemove", (event) => {
-    if (!draggingTerminal) {
-        return;
-    }
-
-    let x = event.clientX - terminalX;
-    let y = event.clientY - terminalY;
-
-    const maxX = window.innerWidth - terminalWindow.offsetWidth;
-    const maxY = window.innerHeight - terminalWindow.offsetHeight;
-
-    x = Math.max(0, Math.min(x, maxX));
-    y = Math.max(55, Math.min(y, maxY - 50));
-
-    terminalWindow.style.left = `${x}px`;
-    terminalWindow.style.top = `${y}px`;
-});
-
-document.addEventListener("mouseup", () => {
-    draggingTerminal = false;
-});
-
-terminalWindow.addEventListener("click", () => {
-    terminalInput.focus();
-});
-
-const monitorIcon = document.querySelector('[data-app="monitor"]');
-const monitorWindow = document.getElementById("monitorWindow");
-const monitorHeader = document.getElementById("monitorHeader");
-const monitorClose = document.getElementById("monitorClose");
-const monitorMinimize = document.getElementById("monitorMinimize");
-
-const cpuBar = document.getElementById("cpuBar");
-const memoryBar = document.getElementById("memoryBar");
-const networkBar = document.getElementById("networkBar");
-const diskBar = document.getElementById("diskBar");
-
-const cpuValue = document.getElementById("cpuValue");
-const memoryValue = document.getElementById("memoryValue");
-const networkValue = document.getElementById("networkValue");
-const diskValue = document.getElementById("diskValue");
-
-const processCount = document.getElementById("processCount");
-const temperature = document.getElementById("temperature");
-const uptime = document.getElementById("uptime");
-
-monitorIcon.addEventListener("click", () => {
-    monitorWindow.style.display = "block";
-});
-
-monitorClose.addEventListener("click", () => {
-    monitorWindow.style.display = "none";
-});
-
-monitorMinimize.addEventListener("click", () => {
-    monitorWindow.style.display = "none";
-});
-
-function randomValue(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+terminalOutput.appendChild(output);
+terminalContent.scrollTop=terminalContent.scrollHeight;
 }
 
-function updateStats() {
-    const cpu = randomValue(25, 88);
-    const memory = randomValue(35, 75);
-    const network = randomValue(10, 65);
-    const disk = randomValue(40, 80);
+function runCommand(command){
+switch(command.toLowerCase()){
+case "help":
+printOutput("Available commands:\n help      Show commands\n clear     Clear terminal\n whoami    Display user\n about     About HackerOS\n status    Show system status\n neofetch  Display system information");
+break;
 
-    cpuValue.textContent = `${cpu}%`;
-    memoryValue.textContent = `${memory}%`;
-    networkValue.textContent = `${network}%`;
-    diskValue.textContent = `${disk}%`;
+case "whoami":
+printOutput("root");
+break;
 
-    cpuBar.style.width = `${cpu}%`;
-    memoryBar.style.width = `${memory}%`;
-    networkBar.style.width = `${network}%`;
-    diskBar.style.width = `${disk}%`;
+case "about":
+printOutput("HackerOS\n--------\nA fictional security-focused web operating system.\nVersion: 1.0.0\nKernel: HackerKernel\nUser: root");
+break;
 
-    processCount.textContent = randomValue(38, 57);
-    temperature.textContent = `${randomValue(38, 58)}°C`;
+case "status":
+printOutput("SYSTEM STATUS\n\nOS: ONLINE\nSECURITY: ACTIVE\nNETWORK: CONNECTED\nKERNEL: RUNNING\nSESSION: SECURE");
+break;
+
+case "neofetch":
+printOutput("HackerOS 1.0\n------------\nOS: HackerOS\nKernel: HackerKernel\nShell: HackerShell\nUser: root\nStatus: ONLINE");
+break;
+
+case "clear":
+terminalOutput.innerHTML="";
+break;
+
+default:
+printOutput(`Command not found: ${command}`);
+}
+}
+
+function makeDraggable(header,windowEl){
+let dragging=false;
+let x=0;
+let y=0;
+
+header.addEventListener("mousedown",event=>{
+dragging=true;
+
+const rect=windowEl.getBoundingClientRect();
+
+x=event.clientX-rect.left;
+y=event.clientY-rect.top;
+
+windowEl.style.transform="none";
+});
+
+document.addEventListener("mousemove",event=>{
+if(!dragging)return;
+
+windowEl.style.left=`${Math.max(0,Math.min(event.clientX-x,innerWidth-windowEl.offsetWidth))}px`;
+
+windowEl.style.top=`${Math.max(55,Math.min(event.clientY-y,innerHeight-windowEl.offsetHeight-50))}px`;
+});
+
+document.addEventListener("mouseup",()=>{
+dragging=false;
+});
+}
+
+makeDraggable(terminalHeader,terminalWindow);
+makeDraggable(passHeader,passWindow);
+
+const monitorIcon=document.querySelector('[data-app="monitor"]');
+const monitorWindow=document.getElementById("monitorWindow");
+const monitorHeader=document.getElementById("monitorHeader");
+const monitorClose=document.getElementById("monitorClose");
+const monitorMinimize=document.getElementById("monitorMinimize");
+
+const cpuBar=document.getElementById("cpuBar");
+const memoryBar=document.getElementById("memoryBar");
+const networkBar=document.getElementById("networkBar");
+const diskBar=document.getElementById("diskBar");
+
+const cpuValue=document.getElementById("cpuValue");
+const memoryValue=document.getElementById("memoryValue");
+const networkValue=document.getElementById("networkValue");
+const diskValue=document.getElementById("diskValue");
+
+const processCount=document.getElementById("processCount");
+const temperature=document.getElementById("temperature");
+const uptime=document.getElementById("uptime");
+
+monitorIcon.addEventListener("click",()=>{
+monitorWindow.style.display="block";
+});
+
+monitorClose.addEventListener("click",()=>{
+monitorWindow.style.display="none";
+});
+
+monitorMinimize.addEventListener("click",()=>{
+monitorWindow.style.display="none";
+});
+
+function randomValue(min,max){
+return Math.floor(Math.random()*(max-min+1))+min;
+}
+
+function updateStats(){
+const cpu=randomValue(25,88);
+const memory=randomValue(35,75);
+const network=randomValue(10,65);
+const disk=randomValue(40,80);
+
+cpuValue.textContent=`${cpu}%`;
+memoryValue.textContent=`${memory}%`;
+networkValue.textContent=`${network}%`;
+diskValue.textContent=`${disk}%`;
+
+cpuBar.style.width=`${cpu}%`;
+memoryBar.style.width=`${memory}%`;
+networkBar.style.width=`${network}%`;
+diskBar.style.width=`${disk}%`;
+
+processCount.textContent=randomValue(38,57);
+temperature.textContent=`${randomValue(38,58)}°C`;
 }
 
 updateStats();
-setInterval(updateStats, 1500);
+setInterval(updateStats,1500);
 
-let seconds = 0;
+let seconds=0;
 
-function updateUptime() {
-    seconds++;
+setInterval(()=>{
+seconds++;
 
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const currentSeconds = seconds % 60;
+const hours=Math.floor(seconds/3600);
+const minutes=Math.floor((seconds%3600)/60);
+const currentSeconds=seconds%60;
 
-    uptime.textContent =
-        `${String(hours).padStart(2, "0")}:` +
-        `${String(minutes).padStart(2, "0")}:` +
-        `${String(currentSeconds).padStart(2, "0")}`;
+uptime.textContent=
+`${String(hours).padStart(2,"0")}:`+
+`${String(minutes).padStart(2,"0")}:`+
+`${String(currentSeconds).padStart(2,"0")}`;
+},1000);
+
+makeDraggable(monitorHeader,monitorWindow);
+
+const comingSoonWindow=document.getElementById("comingSoonWindow");
+const comingSoonHeader=document.getElementById("comingSoonHeader");
+const comingSoonClose=document.getElementById("comingSoonClose");
+const comingSoonApp=document.getElementById("comingSoonApp");
+
+function openComingSoon(name){
+comingSoonApp.textContent=name.toUpperCase();
+comingSoonWindow.style.display="block";
 }
 
-setInterval(updateUptime, 1000);
-
-let draggingMonitor = false;
-let monitorX = 0;
-let monitorY = 0;
-
-monitorHeader.addEventListener("mousedown", (event) => {
-    draggingMonitor = true;
-
-    const rect = monitorWindow.getBoundingClientRect();
-
-    monitorX = event.clientX - rect.left;
-    monitorY = event.clientY - rect.top;
-
-    monitorWindow.style.transform = "none";
+document.querySelector('[data-app="network"]').addEventListener("click",()=>{
+openComingSoon("Network Scanner");
 });
 
-document.addEventListener("mousemove", (event) => {
-    if (!draggingMonitor) {
-        return;
-    }
-
-    let x = event.clientX - monitorX;
-    let y = event.clientY - monitorY;
-
-    const maxX = window.innerWidth - monitorWindow.offsetWidth;
-    const maxY = window.innerHeight - monitorWindow.offsetHeight;
-
-    x = Math.max(0, Math.min(x, maxX));
-    y = Math.max(55, Math.min(y, maxY - 50));
-
-    monitorWindow.style.left = `${x}px`;
-    monitorWindow.style.top = `${y}px`;
+document.querySelector('[data-app="editor"]').addEventListener("click",()=>{
+openComingSoon("Code Editor");
 });
 
-document.addEventListener("mouseup", () => {
-    draggingMonitor = false;
+comingSoonClose.addEventListener("click",()=>{
+comingSoonWindow.style.display="none";
 });
 
-const comingSoonWindow = document.getElementById("comingSoonWindow");
-const comingSoonHeader = document.getElementById("comingSoonHeader");
-const comingSoonClose = document.getElementById("comingSoonClose");
-const comingSoonApp = document.getElementById("comingSoonApp");
-
-const networkIcon = document.querySelector('[data-app="network"]');
-const editorIcon = document.querySelector('[data-app="editor"]');
-
-function openComingSoon(name) {
-    comingSoonApp.textContent = name.toUpperCase();
-    comingSoonWindow.style.display = "block";
-}
-
-networkIcon.addEventListener("click", () => {
-    openComingSoon("Network Scanner");
-});
-
-editorIcon.addEventListener("click", () => {
-    openComingSoon("Code Editor");
-});
-
-comingSoonClose.addEventListener("click", () => {
-    comingSoonWindow.style.display = "none";
-});
-
-let draggingComingSoon = false;
-let comingSoonX = 0;
-let comingSoonY = 0;
-
-comingSoonHeader.addEventListener("mousedown", (event) => {
-    draggingComingSoon = true;
-
-    const rect = comingSoonWindow.getBoundingClientRect();
-
-    comingSoonX = event.clientX - rect.left;
-    comingSoonY = event.clientY - rect.top;
-
-    comingSoonWindow.style.transform = "none";
-});
-
-document.addEventListener("mousemove", (event) => {
-    if (!draggingComingSoon) {
-        return;
-    }
-
-    let x = event.clientX - comingSoonX;
-    let y = event.clientY - comingSoonY;
-
-    const maxX = window.innerWidth - comingSoonWindow.offsetWidth;
-    const maxY = window.innerHeight - comingSoonWindow.offsetHeight;
-
-    x = Math.max(0, Math.min(x, maxX));
-    y = Math.max(55, Math.min(y, maxY - 50));
-
-    comingSoonWindow.style.left = `${x}px`;
-    comingSoonWindow.style.top = `${y}px`;
-});
-
-document.addEventListener("mouseup", () => {
-    draggingComingSoon = false;
-});
+makeDraggable(comingSoonHeader,comingSoonWindow);
 
 typeLine();
