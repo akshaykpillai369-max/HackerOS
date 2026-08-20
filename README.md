@@ -25,7 +25,3 @@ It is designed to give a movie-style hacking experience directly in the browser.
 
 1. Clone the repository.
 2. Open `index.html` in your browser.
-
-## Author
-
-Akshay
