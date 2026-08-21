@@ -4,140 +4,172 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HackerOS</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-zinc-950 font-mono text-emerald-500">
+<body class="bg-[#0f1419] font-['JetBrains_Mono',monospace] text-slate-200 antialiased selection:bg-sky-500/30 selection:text-sky-200">
 
-  <section id="bootScreen" class="flex h-screen items-center justify-center p-6 text-emerald-400">
-    <div class="w-full max-w-md space-y-6">
-      <div>
-        <div class="text-xs tracking-widest text-emerald-700">WELCOME TO</div>
-        <h1 class="mt-2 text-4xl font-bold tracking-wider text-white">
-          HACKER<span class="text-emerald-500">OS</span>
-        </h1>
-        <p class="mt-2 text-sm text-zinc-400">
-          A minimal web operating system built for curious minds.
-        </p>
+ 
+  <section id="bootScreen" class="flex h-screen items-center justify-center p-6">
+    <div class="w-full max-w-sm space-y-8 text-center">
+      <div class="space-y-2">
+
+        <div class="inline-block rounded-full bg-sky-500/10 px-3 py-1 text-xs font-semibold text-sky-400 border border-sky-500/20">
+          SYSTEM BOOT
+        </div>
+        <h1 class="text-3xl font-bold tracking-tight text-white">HackerOS</h1>
+        <p class="text-xs text-slate-400">Environment initialized. Ready for user input.</p>
+
       </div>
 
-      <div class="flex items-center justify-between border-t border-zinc-800 pt-6">
-        <span class="text-xs text-zinc-600">v1.0.0</span>
-        <button id="enterButton" class="text-sm font-bold tracking-wider text-emerald-500 transition hover:text-emerald-300">
-          ENTER SYSTEM &gt;_
-        </button>
-      </div>
+      <button id="enterButton" class="btn-primary w-full py-2.5 text-xs tracking-wider uppercase">
+        Launch Session &rarr;
+      </button>
     </div>
   </section>
 
-  <section id="desktop" class="relative hidden h-screen overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('kali.jpg');">
+ 
+  <section id="desktop" class="relative hidden h-screen overflow-hidden bg-[#0f1419] bg-[url('kali.jpg')] bg-cover bg-center bg-no-repeat" >
+     
+    <header class="relative z-30 flex h-10 w-full items-center justify-between border-b border-white/10 bg-slate-950/40 px-4 text-xs backdrop-blur-md">
+      <div class="flex items-center gap-3">
+        <span class="font-bold text-white">HackerOS</span>
 
-    <div class="absolute inset-0 bg-zinc-950/80"></div>
 
-    <header class="relative z-10 flex h-12 w-full items-center justify-between border-b border-zinc-800 bg-zinc-900/90 px-4 text-xs backdrop-blur-sm">
-      <div class="font-bold tracking-wider text-white">&gt;_ HACKER<span class="text-emerald-500">OS</span></div>
-      <div class="flex items-center gap-4 text-zinc-400">
-        <span class="text-emerald-500">● ONLINE</span>
-        <span id="clock">00:00:00</span>
+        <span class="text-slate-600">|</span>
+        <span class="text-slate-400">Workspace 1</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400">
+
+
+        <span class="flex items-center gap-1.5 text-emerald-400">
+          <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span> Active
+        </span>
+        <span id="clock" class="font-medium text-slate-200">00:00:00</span>
       </div>
     </header>
 
-    <div class="absolute left-4 top-16 z-10 flex flex-col gap-3">
-      <button class="icon flex w-16 cursor-pointer flex-col items-center gap-1 text-center" data-app="terminal">
-        <div class="flex h-10 w-10 items-center justify-center rounded border border-zinc-700 bg-zinc-900/80 text-emerald-400 backdrop-blur-sm">&gt;_</div>
-        <span class="text-xs">Terminal</span>
+ 
+    <nav class="absolute left-4 top-14 z-20 flex flex-col gap-2">
+      <button class="desktop-icon flex flex-col items-center gap-1.5 text-center group" data-app="terminal">
+        <div class="icon-box flex items-center justify-center text-sky-400 group-hover:border-sky-500/40 group-hover:text-sky-300">
+          &gt;_
+        </div>
+        <span class="text-[11px] text-slate-300">Terminal</span>
       </button>
 
-      <button class="icon flex w-16 cursor-pointer flex-col items-center gap-1 text-center" data-app="network">
-        <div class="flex h-10 w-10 items-center justify-center rounded border border-zinc-700 bg-zinc-900/80 text-emerald-400 backdrop-blur-sm">◉</div>
-        <span class="text-xs">Network</span>
+      <button class="desktop-icon flex flex-col items-center gap-1.5 text-center group" data-app="monitor">
+        <div class="icon-box flex items-center justify-center text-sky-400 group-hover:border-sky-500/40 group-hover:text-sky-300">
+          ⚡
+        </div>
+        <span class="text-[11px] text-slate-300">Monitor</span>
       </button>
 
-      <button class="icon flex w-16 cursor-pointer flex-col items-center gap-1 text-center" data-app="editor">
-        <div class="flex h-10 w-10 items-center justify-center rounded border border-zinc-700 bg-zinc-900/80 text-emerald-400 backdrop-blur-sm">&lt;/&gt;</div>
-        <span class="text-xs">Editor</span>
+      <button class="desktop-icon flex flex-col items-center gap-1.5 text-center group" data-app="password">
+        <div class="icon-box flex items-center justify-center text-sky-400 group-hover:border-sky-500/40 group-hover:text-sky-300">
+          🔑
+        </div>
+        <span class="text-[11px] text-slate-300">Keys</span>
       </button>
 
-      <button class="icon flex w-16 cursor-pointer flex-col items-center gap-1 text-center" data-app="monitor">
-        <div class="flex h-10 w-10 items-center justify-center rounded border border-zinc-700 bg-zinc-900/80 text-emerald-400 backdrop-blur-sm">⚡</div>
-        <span class="text-xs">Monitor</span>
+      <button class="desktop-icon flex flex-col items-center gap-1.5 text-center group" data-app="network">
+        <div class="icon-box flex items-center justify-center text-sky-400 group-hover:border-sky-500/40 group-hover:text-sky-300">
+          ◉
+        </div>
+        <span class="text-[11px] text-slate-300">Network</span>
       </button>
+    </nav>
 
-      <button class="icon flex w-16 cursor-pointer flex-col items-center gap-1 text-center" data-app="password">
-        <div class="flex h-10 w-10 items-center justify-center rounded border border-zinc-700 bg-zinc-900/80 text-emerald-400 backdrop-blur-sm">🔑</div>
-        <span class="text-xs">Password</span>
-      </button>
-    </div>
-    <section id="terminalWindow" class="window absolute left-1/2 top-20 z-20 hidden h-96 w-full max-w-xl -translate-x-1/2 rounded border border-zinc-700 bg-zinc-900/95 shadow-xl backdrop-blur-sm">
-      <div id="terminalHeader" class="flex h-9 cursor-move items-center justify-between border-b border-zinc-800 bg-zinc-950/80 px-3 text-xs text-zinc-400">
-        <span>&gt;_ terminal</span>
-        <div class="flex items-center gap-1">
-          <button id="terminalMinimize" class="flex h-6 w-6 items-center justify-center rounded text-base hover:bg-zinc-800 hover:text-white">−</button>
-          <button id="terminalClose" class="flex h-6 w-6 items-center justify-center rounded text-lg hover:bg-red-500/20 hover:text-red-400">×</button>
+  
+    <section id="terminalWindow" class="os-window absolute left-1/2 top-20 z-30 hidden h-96 w-full max-w-xl -translate-x-1/2">
+      <div id="terminalHeader" class="window-header flex items-center justify-between px-3 text-xs text-slate-400">
+
+
+        <span class="flex items-center gap-2">
+          <span class="h-2.5 w-2.5 rounded-full bg-slate-600"></span>
+          bash — 80x24
+        </span>
+        <div class="flex items-center gap-2">
+          <button id="terminalClose" class="h-5 w-5 rounded text-slate-400 hover:bg-rose-500/20 hover:text-rose-300 flex items-center justify-center transition">✕</button>
         </div>
       </div>
-      <div id="terminalContent" class="h-[calc(100%-2.25rem)] overflow-y-auto p-4 text-xs">
-        <div class="mb-4">
-          <div class="font-bold text-emerald-400">HACKEROS TERMINAL</div>
-          <div class="text-zinc-500">Type "help" to see available commands.</div>
+      <div id="terminalContent" class="h-[calc(100%-2.25rem)] overflow-y-auto p-4 text-xs font-mono">
+        <div class="mb-3 text-slate-400">
+          HackerOS v1.0.0 (x86_64-pc-linux-gnu)<br>
+          Type <span class="text-sky-400">help</span> for a list of internal commands.
         </div>
         <div class="terminal-output"></div>
+
+
         <div class="mt-2 flex items-center gap-2">
-          <span class="whitespace-nowrap text-emerald-400">root@hackeros:~$</span>
-          <input id="terminalInput" class="w-full bg-transparent text-white outline-none" autocomplete="off" />
+
+
+          <span class="text-sky-400">user@hackeros:~$</span>
+          <input id="terminalInput" class="w-full bg-transparent text-slate-100 outline-none" autocomplete="off" />
         </div>
       </div>
     </section>
+ 
+    <section id="passWindow" class="os-window absolute left-1/2 top-24 z-30 hidden w-80 max-w-full -translate-x-1/2 p-4 text-xs">
+      <div id="passHeader" class="window-header -mx-4 -mt-4 mb-4 flex items-center justify-between px-3 text-slate-300">
 
 
-    <section id="passWindow" class="window absolute left-1/2 top-24 z-20 hidden w-80 max-w-full -translate-x-1/2 rounded border border-zinc-700 bg-zinc-900/95 p-4 text-xs shadow-xl backdrop-blur-sm">
-      <div id="passHeader" class="mb-4 flex cursor-move items-center justify-between border-b border-zinc-800 pb-2 font-bold text-emerald-400">
-        <span>&gt;_ Password Generator</span>
-        <button id="passClose" class="flex h-6 w-6 items-center justify-center rounded text-lg text-zinc-400 hover:bg-red-500/20 hover:text-red-400">×</button>
+        <span class="font-bold text-sky-400">&gt;_ Password Generator</span>
+        <button id="passClose" class="h-5 w-5 rounded text-slate-400 hover:bg-rose-500/20 hover:text-rose-300 flex items-center justify-center">✕</button>
       </div>
       <div class="space-y-3">
         <div class="flex items-center justify-between">
           <label for="passLength">Password length:</label>
-          <input id="passLength" type="number" min="4" max="32" value="16" class="w-16 rounded border border-zinc-700 bg-zinc-950 p-1 text-center text-emerald-400 outline-none">
+          <input id="passLength" type="number" min="4" max="32" value="16" class="w-16 rounded border border-white/10 bg-slate-950 p-1 text-center text-sky-400 outline-none">
         </div>
         <label class="flex cursor-pointer items-center gap-2"><input id="includeUppercase" type="checkbox" checked> Uppercase</label>
         <label class="flex cursor-pointer items-center gap-2"><input id="includeNumbers" type="checkbox" checked> Numbers</label>
+
         <label class="flex cursor-pointer items-center gap-2"><input id="includeSymbols" type="checkbox" checked> Symbols</label>
-        <button id="generatePass" class="w-full rounded border border-emerald-500 py-2 font-bold text-emerald-400 transition hover:bg-emerald-500 hover:text-zinc-950">GENERATE</button>
-        <div class="flex items-center justify-between rounded border border-zinc-800 bg-zinc-950 p-2">
-          <div id="passOutput" class="break-all text-emerald-400">---</div>
-          <button id="copy" class="ml-2 rounded border border-zinc-700 px-2 py-1 text-zinc-300 hover:bg-zinc-800">COPY</button>
+        <button id="generatePass" class="btn-primary w-full py-2 text-xs">GENERATE</button>
+        <div class="flex items-center justify-between rounded border border-white/10 bg-slate-950 p-2">
+
+          <div id="passOutput" class="break-all text-sky-400">---</div>
+          <button id="copy" class="ml-2 rounded border border-white/10 px-2 py-1 text-slate-300 hover:bg-white/5">COPY</button>
         </div>
       </div>
     </section>
 
-    <section id="monitorWindow" class="window absolute left-1/2 top-24 z-20 hidden w-96 max-w-full -translate-x-1/2 rounded border border-zinc-700 bg-zinc-900/95 shadow-xl backdrop-blur-sm">
-      <div id="monitorHeader" class="flex h-9 cursor-move items-center justify-between border-b border-zinc-800 bg-zinc-950/80 px-3 text-xs">
+
+    <section id="monitorWindow" class="os-window absolute left-1/2 top-24 z-30 hidden w-96 max-w-full -translate-x-1/2">
+      <div id="monitorHeader" class="window-header flex items-center justify-between px-3 text-xs text-slate-400">
+
+
+
         <span>⚡ System Monitor</span>
-        <div class="flex items-center gap-1">
-          <button id="monitorMinimize" class="flex h-6 w-6 items-center justify-center rounded text-base hover:bg-zinc-800 hover:text-white">−</button>
-          <button id="monitorClose" class="flex h-6 w-6 items-center justify-center rounded text-lg hover:bg-red-500/20 hover:text-red-400">×</button>
-        </div>
+        <button id="monitorClose" class="h-5 w-5 rounded text-slate-400 hover:bg-rose-500/20 hover:text-rose-300 flex items-center justify-center">✕</button>
       </div>
       <div class="space-y-4 p-4 text-xs">
         <div class="space-y-3">
           <div>
             <div class="mb-1 flex justify-between"><span>CPU</span><span id="cpuValue">0%</span></div>
-            <div class="h-1.5 w-full overflow-hidden rounded bg-zinc-800"><div id="cpuBar" class="h-full w-0 bg-emerald-500"></div></div>
+            <div class="h-1.5 w-full overflow-hidden rounded bg-slate-800"><div id="cpuBar" class="h-full w-0 bg-sky-400"></div></div>
           </div>
           <div>
             <div class="mb-1 flex justify-between"><span>MEMORY</span><span id="memoryValue">0%</span></div>
-            <div class="h-1.5 w-full overflow-hidden rounded bg-zinc-800"><div id="memoryBar" class="h-full w-0 bg-emerald-500"></div></div>
+            <div class="h-1.5 w-full overflow-hidden rounded bg-slate-800"><div id="memoryBar" class="h-full w-0 bg-sky-400"></div></div>
           </div>
           <div>
             <div class="mb-1 flex justify-between"><span>NETWORK</span><span id="networkValue">0%</span></div>
-            <div class="h-1.5 w-full overflow-hidden rounded bg-zinc-800"><div id="networkBar" class="h-full w-0 bg-emerald-500"></div></div>
+            <div class="h-1.5 w-full overflow-hidden rounded bg-slate-800"><div id="networkBar" class="h-full w-0 bg-sky-400"></div></div>
           </div>
           <div>
             <div class="mb-1 flex justify-between"><span>DISK</span><span id="diskValue">0%</span></div>
-            <div class="h-1.5 w-full overflow-hidden rounded bg-zinc-800"><div id="diskBar" class="h-full w-0 bg-emerald-500"></div></div>
+            <div class="h-1.5 w-full overflow-hidden rounded bg-slate-800"><div id="diskBar" class="h-full w-0 bg-sky-400"></div></div>
           </div>
         </div>
-        <div class="grid grid-cols-3 gap-2 border-t border-zinc-800 pt-3 text-center text-zinc-400">
+        <div class="grid grid-cols-3 gap-2 border-t border-white/10 pt-3 text-center text-slate-400">
           <div>PROCESSES<br><b id="processCount" class="text-white">0</b></div>
           <div>TEMP<br><b id="temperature" class="text-white">0°C</b></div>
           <div>UPTIME<br><b id="uptime" class="text-white">00:00:00</b></div>
@@ -146,25 +178,25 @@
     </section>
 
 
-    <section id="comingSoonWindow" class="window absolute left-1/2 top-32 z-20 hidden w-80 max-w-full -translate-x-1/2 rounded border border-zinc-700 bg-zinc-900/95 shadow-xl backdrop-blur-sm">
-      <div id="comingSoonHeader" class="flex h-9 cursor-move items-center justify-between border-b border-zinc-800 bg-zinc-950/80 px-3 text-xs">
+    <section id="comingSoonWindow" class="os-window absolute left-1/2 top-32 z-30 hidden w-80 max-w-full -translate-x-1/2">
+      <div id="comingSoonHeader" class="window-header flex items-center justify-between px-3 text-xs text-slate-400">
+
+
         <span>&gt;_ application</span>
-        <button id="comingSoonClose" class="flex h-6 w-6 items-center justify-center rounded text-lg hover:bg-red-500/20 hover:text-red-400">×</button>
+        <button id="comingSoonClose" class="h-5 w-5 rounded text-slate-400 hover:bg-rose-500/20 hover:text-rose-300 flex items-center justify-center">✕</button>
       </div>
-      <div class="flex h-48 flex-col items-center justify-center space-y-2 p-4 text-center">
-        <b class="text-lg tracking-widest text-emerald-400">COMING SOON</b>
-        <div id="comingSoonApp" class="text-xs uppercase text-zinc-400">APPLICATION</div>
-        <p class="text-xs text-zinc-500">This module is under development.</p>
+      <div class="flex h-40 flex-col items-center justify-center space-y-2 p-4 text-center">
+        <b class="text-base tracking-widest text-sky-400">COMING SOON</b>
+
+
+
+        <div id="comingSoonApp" class="text-xs uppercase text-slate-400">APPLICATION</div>
+
+
+
+        <p class="text-[11px] text-slate-500">This module is currently under development.</p>
       </div>
     </section>
-
-    <footer class="absolute bottom-0 left-0 z-10 flex h-8 w-full items-center justify-between border-t border-zinc-800 bg-zinc-900/90 px-4 text-xs text-zinc-500 backdrop-blur-sm">
-      <span>HACKEROS</span>
-      <div class="flex gap-3">
-        <span class="font-semibold text-emerald-500">SECURE</span>
-        <span>ROOT</span>
-      </div>
-    </footer>
 
   </section>
 
