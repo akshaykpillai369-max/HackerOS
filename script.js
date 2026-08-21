@@ -35,6 +35,8 @@ function openWindow(win) {
   win.classList.remove("hidden")
   win.style.display = "block"
   focusWindow(win)
+
+  updateTaskBar()
 }
 
 
@@ -42,6 +44,9 @@ function openWindow(win) {
 function closeWindow(win) {
   if (!win) return
   win.style.display = "none"
+
+  updateTaskBar()
+
 }
 
 
@@ -124,6 +129,10 @@ document.addEventListener("click", (e) => {
   else if (appName === "notes") {
   openWindow(document.getElementById("notesWindow"))
   }
+
+  else if (appName === "settings") {
+  openWindow(document.getElementById("settingsWindow")) 
+  }
   
   else {
 
@@ -144,6 +153,7 @@ const windowControls = [
   { btn: "monitorMinimize", win: "monitorWindow" },
   { btn: "passClose", win: "passWindow" },
   { btn: "notesClose", win: "notesWindow" },
+  { btn: "settingsClose", win: "settingsWindow" },
   { btn: "comingSoonClose", win: "comingSoonWindow" }
 ]
 
@@ -216,6 +226,72 @@ clearNotesBtn?.addEventListener("click", () => {
 
   }
 })
+
+function setWallpaper(url) {
+
+  if(!url) return;
+  const desktopset = document.getElementById('desktop')
+
+  if(desktopset){
+
+    desktopset.style.backgroundImage = `url('${url}')`
+    localStorage.setItem('hackeros_wallpaper', url)
+  }
+}
+
+const savedWallpaper = localStorage.getItem('hackeros_wallapaper')
+if(savedWallpaper){
+
+  setWallpaper(savedWallpaper)
+}
+
+document.querySelectorAll('.wp-btn').forEach((btn) => {
+
+  btn.addEventListener('click', () => {
+
+    const wpUrl = btn.dataset.wp
+    setWallpaper(wpUrl)
+  })
+})
+
+const applyWpBtn = document.getElementById("applyCustomWallpaper")
+const wpUrlInput = document.getElementById("wallpaperUrlInput")
+
+applyWpBtn?.addEventListener("click", () => {
+  const customUrl = wpUrlInput?.value.trim()
+  if (customUrl) {
+    setWallpaper(customUrl);
+    if (wpUrlInput) wpUrlInput.value = ""
+  }
+})
+
+function updateTaskBar(){
+
+  const docker = document.getElementById('taskbarDock')
+  if(!docker) return
+  docker.innerHTML = ''
+
+
+  const windows = document.querySelectorAll('.os-window')
+  windows.forEach((win) => {
+
+    if(win.style.display === 'block') {
+
+      const headerText = win.querySelector('.window-header span')?.textContent.trim() || 'App'
+      const btn = document.createElement('button')
+      btn.className = 'px-2.5 py-1 text-[11px] rounded bg-white/10 hover:bg-white/20  text-slate-200 transition'
+      
+      btn.textContent = headerText
+      btn.addEventListener('click', () => {
+
+        focusWindow(win)
+  
+      })
+
+      docker.appendChild(btn)
+    }
+  })
+}
 
 
 const termInput = document.getElementById("terminalInput")

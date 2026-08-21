@@ -35,7 +35,7 @@
   </section>
 
  
-  <section id="desktop" class="relative hidden h-screen overflow-hidden bg-[#0f1419] bg-[url('kali.jpg')] bg-cover bg-center bg-no-repeat" >
+  <section id="desktop" class="relative hidden h-screen overflow-hidden bg-[#0f1419] bg-[url('linux.jpeg')] bg-cover bg-center bg-no-repeat" >
      
     <header class="relative z-30 flex h-10 w-full items-center justify-between border-b border-white/10 bg-slate-950/40 px-4 text-xs backdrop-blur-md">
       <div class="flex items-center gap-3">
@@ -108,7 +108,7 @@
 
         <span class="flex items-center gap-2">
           <span class="h-2.5 w-2.5 rounded-full bg-slate-600"></span>
-          bash — 80x24
+          >_ Hacker Terminal
         </span>
         <div class="flex items-center gap-2">
           <button id="terminalClose" class="h-5 w-5 rounded text-slate-400 hover:bg-rose-500/20 hover:text-rose-300 flex items-center justify-center transition">✕</button>
@@ -119,7 +119,7 @@
           HackerOS v1.0.0 (x86_64-pc-linux-gnu)<br>
           Type <span class="text-sky-400">help</span> for a list of internal commands.
         </div>
-        <div class="terminal-output"></div>
+        <div class="terminal-output"></div>  
 
 
         <div class="mt-2 flex items-center gap-2">
@@ -135,7 +135,7 @@
       <div id="passHeader" class="window-header -mx-4 -mt-4 mb-4 flex items-center justify-between px-3 text-slate-300">
 
 
-        <span class="font-bold text-sky-400">&gt;_ Password Generator</span>
+        <span class="font-bold text-sky-400">&gt;_ Hacker Password Generator</span>
         <button id="passClose" class="h-5 w-5 rounded text-slate-400 hover:bg-rose-500/20 hover:text-rose-300 flex items-center justify-center">✕</button>
       </div>
       <div class="space-y-3">
@@ -162,7 +162,7 @@
 
 
 
-        <span>⚡ System Monitor</span>
+        <span>⚡ Hacker System Monitor</span>
         <button id="monitorClose" class="h-5 w-5 rounded text-slate-400 hover:bg-rose-500/20 hover:text-rose-300 flex items-center justify-center">✕</button>
       </div>
       <div class="space-y-4 p-4 text-xs">
@@ -215,7 +215,75 @@
     
     </section>
 
+    <section id="settingsWindow" class="os-window absolute left-1/2 top-28 z-30 hidden w-[450px] max-w-[95vw] -translate-x-1/2 p-5 text-xs">
 
+
+      <div id="settingsHeader" class="window-header -mx-4 -mt-4 mb-4 flex items-center justify-between px-3 text-slate-300">
+        
+        
+        <span>⚙️ Hacker Settings</span>
+        
+        <button id="settingsClose" class="h-5 w-5 rounded text-slate-400 hover:bg-rose-500/20 hover:text-rose-300 flex items-center justify-center">✕</button>
+      
+      </div>
+      
+      <div class="space-y-4">
+       
+        
+        <div>
+         
+          <label class="mb-2 block text-slate-400">Desktop Wallpaper:</label>
+          
+          
+          <div id="wallpaper" class="grid grid-cols-3 gap-3 mb-4">
+            
+           
+            <button class="wp-btn group relative h-24 w-full overflow-hidden rounded-lg border border-white/10 transition-all hover:border-sky-400 focus:outline-none" data-wp="kali.jpg">
+    
+              <img src="kali.jpg" alt="Kali" class="h-full w-full object-cover" />
+    
+              <div class="absolute inset-x-0 bottom-0 bg-slate-950/80 px-1 py-1 text-[10px] font-medium text-slate-200 text-center">
+      
+                Kali Linux
+    
+              </div>
+  
+            </button>
+            
+           
+            <button class="wp-btn group relative h-24 w-full overflow-hidden rounded-lg border border-white/10 transition-all hover:border-sky-400 focus:outline-none" data-wp="kali2.png">
+    
+              <img src="kali2.png" alt="Abstract" class="h-full w-full object-cover" />
+    
+              <div class="absolute inset-x-0 bottom-0 bg-slate-950/80 px-1 py-1 text-[10px] font-medium text-slate-200 text-center">
+      
+                Kali OG
+    
+              </div>
+  
+            </button>
+
+            <button class="wp-btn group relative h-24 w-full overflow-hidden rounded-lg border border-white/10 transition-all hover:border-sky-400 focus:outline-none" data-wp="linux.jpeg">
+    
+            <img src="linux.jpeg" alt="Nebula" class="h-full w-full object-cover" />
+    
+            <div class="absolute inset-x-0 bottom-0 bg-slate-950/80 px-1 py-1 text-[10px] font-medium text-slate-200 text-center">
+      
+              Linux
+    
+            </div>
+  
+          </button>
+          
+        </div>
+        
+        </div>
+      
+      
+      
+    </div>
+   
+</section>
 
 
     <section id="comingSoonWindow" class="os-window absolute left-1/2 top-32 z-30 hidden w-80 max-w-full -translate-x-1/2">
@@ -237,6 +305,14 @@
         <p class="text-[11px] text-slate-500">This module is currently under development.</p>
       </div>
     </section>
+
+    <footer class="absolute bottom-2 left-1/2 z-40 flex -translate-x-1/2 items-cneter gap-2 rounded-xl border border-white/10 bg-slate-950/70 px-3 py-1.5 backdrop-blur-md">
+
+      <div id="taskbarDock" class="flex gap-1">
+
+
+      </div>
+    </footer>
 
   </section>
 
