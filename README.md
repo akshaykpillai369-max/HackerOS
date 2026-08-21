@@ -7,12 +7,12 @@ It is designed to give a movie-style hacking experience directly in the browser.
 ## Features
 
 - Hacker-style boot screen
-- Typing boot animation
 - HackerOS desktop
 - Terminal with basic commands
 - Animated system monitor
 - Network Scanner coming soon
-- Code Editor coming soon
+- Password Generator
+- Settings to change desktop Wallpaper
 - Kali Linux-inspired desktop background
 
 ## Built With
@@ -25,3 +25,6 @@ It is designed to give a movie-style hacking experience directly in the browser.
 
 1. Clone the repository.
 2. Open `index.html` in your browser.
+          OR
+    Visit this url : https://akshaykpillai369-max.github.io/HackerOS/      
+   
