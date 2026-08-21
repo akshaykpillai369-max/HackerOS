@@ -61,21 +61,21 @@
         <div class="icon-box flex items-center justify-center text-sky-400 group-hover:border-sky-500/40 group-hover:text-sky-300">
           &gt;_
         </div>
-        <span class="text-[11px] text-slate-300">Terminal</span>
+        <span class="text-[11px] text-slate-300">H-Terminal</span>
       </button>
 
       <button class="desktop-icon flex flex-col items-center gap-1.5 text-center group" data-app="monitor">
         <div class="icon-box flex items-center justify-center text-sky-400 group-hover:border-sky-500/40 group-hover:text-sky-300">
           ⚡
         </div>
-        <span class="text-[11px] text-slate-300">Monitor</span>
+        <span class="text-[11px] text-slate-300">H-Monitor</span>
       </button>
 
       <button class="desktop-icon flex flex-col items-center gap-1.5 text-center group" data-app="password">
         <div class="icon-box flex items-center justify-center text-sky-400 group-hover:border-sky-500/40 group-hover:text-sky-300">
           🔑
         </div>
-        <span class="text-[11px] text-slate-300">Keys</span>
+        <span class="text-[11px] text-slate-300">H-Key Generator</span>
       </button>
 
       <button class="desktop-icon flex flex-col items-center gap-1.5 text-center group" data-app="network">
@@ -84,6 +84,21 @@
         </div>
         <span class="text-[11px] text-slate-300">Network</span>
       </button>
+
+       <button class="desktop-icon flex flex-col items-center gap-1.5 text-cneter group" data-app="notes">
+        <div class="icon-box flex items-center justify-cneter text-sky-400 ground-hover">📝</div>
+        <span class="text-[11px] text-slate-300">Hacker Notes</span>
+        
+      </button>
+
+      </button>
+
+       <button class="desktop-icon flex flex-col items-center gap-1.5 text-cneter group" data-app="settings">
+        <div class="icon-box flex items-center justify-cneter text-sky-400 ground-hover">⚙️</div>
+        <span class="text-[11px] text-slate-300">Hacker Settings</span>
+        
+      </button>
+     
     </nav>
 
   
@@ -175,7 +190,32 @@
           <div>UPTIME<br><b id="uptime" class="text-white">00:00:00</b></div>
         </div>
       </div>
+
     </section>
+
+    <section id="notesWindow" class="os-window absolute left-1/2 top-28 z-30 hidden w-96 max-w-full -translate-x-1/2 p-4 text-xs">
+
+      <div id="notesHeader" class="window-header -mx-4 -mt-4 mb-3 flex items-center justify-between px-3 text-slate-300">
+
+        <span>📝 Hacker Notes</span>
+
+        <button id="notesClose" class="h-5 w-5 rounded text-slate-400 hover:bg-rose-500/20 hover:text-rose-300 flex items-center justify-center">✕</button>
+      
+      </div>
+      
+      <textarea id="notesArea" class="h-44 w-full resize-none rounded border border-white/10 bg-slate-950 p-2 text-slate-200 outline-none focus:border-sky-500/50" placeholder="Type your notes here..."></textarea>
+      
+      <div class="mt-2 flex justify-between">
+        
+        <button id="saveNotes" class="btn-primary px-3 py-1 text-[11px]">SAVE</button>
+        
+        <button id="clearNotes" class="rounded border border-white/10 px-3 py-1 text-[11px] text-slate-400 hover:bg-white/5">CLEAR</button>
+      
+      </div>
+    
+    </section>
+
+
 
 
     <section id="comingSoonWindow" class="os-window absolute left-1/2 top-32 z-30 hidden w-80 max-w-full -translate-x-1/2">
