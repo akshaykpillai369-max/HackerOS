@@ -55,7 +55,7 @@
     </header>
 
  
-    <nav class="absolute left-4 top-14 z-20 flex flex-col gap-2">
+    <nav class="absolute left-4 top-14 z-20 flex flex-col flex-wrap max-h-[calc(100vh-5rem)] gap-2">
       <button class="desktop-icon flex flex-col items-center gap-1.5 text-center group" data-app="terminal">
         <div class="icon-box flex items-center justify-center text-sky-400 group-hover:border-sky-500/40 group-hover:text-sky-300">
           &gt;_
@@ -84,18 +84,32 @@
         <span class="text-[11px] text-slate-300">Network</span>
       </button>
 
-       <button class="desktop-icon flex flex-col items-center gap-1.5 text-cneter group" data-app="notes">
-        <div class="icon-box flex items-center justify-cneter text-sky-400 ground-hover">📝</div>
+      <button class="desktop-icon flex flex-col items-center gap-1.5 text-center group" data-app="notes">
+        <div class="icon-box flex items-center justify-center text-sky-400 group-hover:border-sky-500/40 group-hover:text-sky-300">
+          📝
+        </div>
         <span class="text-[11px] text-slate-300">Hacker Notes</span>
-        
       </button>
 
-      </button>
-
-       <button class="desktop-icon flex flex-col items-center gap-1.5 text-cneter group" data-app="settings">
-        <div class="icon-box flex items-center justify-cneter text-sky-400 ground-hover">⚙️</div>
+      <button class="desktop-icon flex flex-col items-center gap-1.5 text-center group" data-app="settings">
+        <div class="icon-box flex items-center justify-center text-sky-400 group-hover:border-sky-500/40 group-hover:text-sky-300">
+          ⚙️
+        </div>
         <span class="text-[11px] text-slate-300">Hacker Settings</span>
-        
+      </button>
+
+      <button class="desktop-icon flex flex-col items-center gap-1.5 text-center group" data-app="calc">
+        <div class="icon-box flex items-center justify-center text-sky-400 group-hover:border-sky-500/40 group-hover:text-sky-300">
+          🔢
+        </div>
+        <span class="text-[11px] text-slate-300">H-Calculator</span>
+      </button>
+
+      <button class="desktop-icon flex flex-col items-center gap-1.5 text-center group" data-app="music">
+        <div class="icon-box flex items-center justify-center text-sky-400 group-hover:border-sky-500/40 group-hover:text-sky-300">
+          🎧
+        </div>
+        <span class="text-[11px] text-slate-300">H-Player</span>
       </button>
      
     </nav>
@@ -314,7 +328,7 @@
 
       <div class="mb-1 flex justify-between text-slate-400">
         <span>Terminal Output: </span>
-        <button id="'clearNetLog" class="text-[10px] text-slate-500 hover:text-slate-300">Clear</button>
+        <button id="clearNetLog" class="text-[10px] text-slate-500 hover:text-slate-300">Clear</button>
 
 
       </div>
@@ -327,7 +341,46 @@
 </section>
 
 
+    <section id="calcWindow" class="os-window absolute left-1/2 top-20 z-30 hidden w-72 max-w-full -translate-x-1/2 p-4 text-xs">
+      <div id="calcHeader" class="window-header -mx-4 -mt-4 mb-3 flex items-center justify-between px-3 text-slate-300">
+        <span>🔢 H-Calc</span>
+        <button id="calcClose" class="h-5 w-5 rounded text-slate-400 hover:bg-rose-500/20 hover:text-rose-300 flex items-center justify-center">✕</button>
+      </div>
 
+      <div class="space-y-3">
+       
+        <div class="rounded border border-white/10 bg-slate-950 p-3 text-right">
+          <div id="calcHistory" class="h-4 text-[10px] text-slate-500"></div>
+          <div id="calcScreen" class="overflow-x-auto text-lg font-bold text-sky-400">0</div>
+        </div>
+
+        <div class="grid grid-cols-4 gap-1.5 font-bold">
+          <button class="calc-btn rounded border border-white/10 bg-slate-900 p-2 text-rose-400 hover:bg-white/5" data-val="C">C</button>
+          <button class="calc-btn rounded border border-white/10 bg-slate-900 p-2 text-slate-300 hover:bg-white/5" data-val="DEL">⌫</button>
+          <button class="calc-btn rounded border border-white/10 bg-slate-900 p-2 text-sky-400 hover:bg-white/5" data-val="%">%</button>
+          <button class="calc-btn rounded border border-white/10 bg-slate-900 p-2 text-sky-400 hover:bg-white/5" data-val="/">÷</button>
+
+          <button class="calc-btn rounded border border-white/10 bg-slate-950 p-2 text-slate-200 hover:bg-white/5" data-val="7">7</button>
+          <button class="calc-btn rounded border border-white/10 bg-slate-950 p-2 text-slate-200 hover:bg-white/5" data-val="8">8</button>
+          <button class="calc-btn rounded border border-white/10 bg-slate-950 p-2 text-slate-200 hover:bg-white/5" data-val="9">9</button>
+          <button class="calc-btn rounded border border-white/10 bg-slate-900 p-2 text-sky-400 hover:bg-white/5" data-val="*">×</button>
+
+          <button class="calc-btn rounded border border-white/10 bg-slate-950 p-2 text-slate-200 hover:bg-white/5" data-val="4">4</button>
+          <button class="calc-btn rounded border border-white/10 bg-slate-950 p-2 text-slate-200 hover:bg-white/5" data-val="5">5</button>
+          <button class="calc-btn rounded border border-white/10 bg-slate-950 p-2 text-slate-200 hover:bg-white/5" data-val="6">6</button>
+          <button class="calc-btn rounded border border-white/10 bg-slate-900 p-2 text-sky-400 hover:bg-white/5" data-val="-">-</button>
+
+          <button class="calc-btn rounded border border-white/10 bg-slate-950 p-2 text-slate-200 hover:bg-white/5" data-val="1">1</button>
+          <button class="calc-btn rounded border border-white/10 bg-slate-950 p-2 text-slate-200 hover:bg-white/5" data-val="2">2</button>
+          <button class="calc-btn rounded border border-white/10 bg-slate-950 p-2 text-slate-200 hover:bg-white/5" data-val="3">3</button>
+          <button class="calc-btn rounded border border-white/10 bg-slate-900 p-2 text-sky-400 hover:bg-white/5" data-val="+">+</button>
+
+          <button class="calc-btn rounded border border-white/10 bg-slate-950 p-2 text-slate-200 hover:bg-white/5 col-span-2" data-val="0">0</button>
+          <button class="calc-btn rounded border border-white/10 bg-slate-950 p-2 text-slate-200 hover:bg-white/5" data-val=".">.</button>
+          <button class="calc-btn btn-primary p-2 text-slate-950 hover:opacity-90" data-val="=">=</button>
+        </div>
+      </div>
+    </section>
 
     <section id="comingSoonWindow" class="os-window absolute left-1/2 top-32 z-30 hidden w-80 max-w-full -translate-x-1/2">
       <div id="comingSoonHeader" class="window-header flex items-center justify-between px-3 text-xs text-slate-400">

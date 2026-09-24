@@ -136,6 +136,10 @@ document.addEventListener("click", (e) => {
   else if (appName === "network") {
     openWindow(document.getElementById("networkWindow"))
   }
+
+  else if (appName === "calc") {
+    openWindow(document.getElementById("calcWindow"))
+  }
   
   else {
 
@@ -149,7 +153,6 @@ document.addEventListener("click", (e) => {
 
 const windowControls = [
   { btn: "terminalClose", win: "terminalWindow" },
-
   { btn: "terminalMinimize", win: "terminalWindow" },
   { btn: "monitorClose", win: "monitorWindow" },
   { btn: "networkClose", win: "networkWindow" },
@@ -157,7 +160,8 @@ const windowControls = [
   { btn: "passClose", win: "passWindow" },
   { btn: "notesClose", win: "notesWindow" },
   { btn: "settingsClose", win: "settingsWindow" },
-  { btn: "comingSoonClose", win: "comingSoonWindow" }
+  { btn: "comingSoonClose", win: "comingSoonWindow" },
+  { btn: "calcClose", win: "calcWindow" },
 ]
 
 windowControls.forEach(({ btn, win }) => {
@@ -506,3 +510,41 @@ pingHostBtn?.addEventListener('click', ()=> {
   }, 350)
 
   })
+
+
+// --- Basic Calculator Logic ---
+const calcScreen = document.getElementById('calcScreen')
+let currentCalcExp = ''
+
+document.querySelectorAll('.calc-btn').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const val = btn.dataset.val
+
+    if (val === 'C') {
+      currentCalcExp = ''
+      calcScreen.textContent = '0'
+    } else if (val === 'DEL') {
+      currentCalcExp = currentCalcExp.slice(0, -1)
+      calcScreen.textContent = currentCalcExp || '0'
+    } else if (val === '=') {
+      if (!currentCalcExp) return
+      try {
+        currentCalcExp = String(Function(`return (${currentCalcExp})`)())
+        calcScreen.textContent = currentCalcExp
+      } catch (error) {
+        calcScreen.textContent = 'Error'
+        currentCalcExp = ''
+      }
+    } else {
+      const operators = ['+', '-', '*', '/', '.']
+      const lastChar = currentCalcExp.slice(-1)
+
+      if (operators.includes(val) && operators.includes(lastChar)) {
+        currentCalcExp = currentCalcExp.slice(0, -1) + val
+      } else {
+        currentCalcExp += val
+      }
+      calcScreen.textContent = currentCalcExp
+    }
+  })
+})
