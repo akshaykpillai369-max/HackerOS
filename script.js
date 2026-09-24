@@ -337,7 +337,7 @@ function runCmd(cmd) {
       break
     case "clear":
       termOutput.innerHTML = ""
-      break 
+      break
     
     case "ifconfig":
       addLine("eth0: flags=4163<UP,BROADCAST,RUNNING> mtu 1500\n      inet 192.168.1.108 netmask 255.255.255.0 broadcast 192.168.1.255\n      ether 52:54:00:12:34:56 txqueuelen 1000 (Ethernet)", "text-slate-300 mb-2 whitespace-pre-wrap")
