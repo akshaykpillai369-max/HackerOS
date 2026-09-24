@@ -133,6 +133,9 @@ document.addEventListener("click", (e) => {
   else if (appName === "settings") {
   openWindow(document.getElementById("settingsWindow")) 
   }
+  else if (appName === "network") {
+    openWindow(document.getElementById("networkWindow"))
+  }
   
   else {
 
@@ -149,7 +152,7 @@ const windowControls = [
 
   { btn: "terminalMinimize", win: "terminalWindow" },
   { btn: "monitorClose", win: "monitorWindow" },
-
+  { btn: "networkClose", win: "networkWindow" },
   { btn: "monitorMinimize", win: "monitorWindow" },
   { btn: "passClose", win: "passWindow" },
   { btn: "notesClose", win: "notesWindow" },
@@ -334,7 +337,15 @@ function runCmd(cmd) {
       break
     case "clear":
       termOutput.innerHTML = ""
+      break 
+    
+    case "ifconfig":
+      addLine("eth0: flags=4163<UP,BROADCAST,RUNNING> mtu 1500\n      inet 192.168.1.108 netmask 255.255.255.0 broadcast 192.168.1.255\n      ether 52:54:00:12:34:56 txqueuelen 1000 (Ethernet)", "text-slate-300 mb-2 whitespace-pre-wrap")
       break
+    case "ping":
+      addLine("PING 127.0.0.1: 56 data bytes\n64 bytes from 127.0.0.1: seq=1 time=0.04 ms\n64 bytes from 127.0.0.1: seq=2 time=0.05 ms\n--- 127.0.0.1 ping statistics: 0% packet loss ---", "text-slate-300 mb-2 whitespace-pre-wrap")
+      break
+
     default:
       addLine(`Command not found: ${cmd}`, "text-rose-400 mb-2")
   }
@@ -414,3 +425,84 @@ setInterval(() => {
     uptimeEl.textContent = new Date(elapsed * 1000).toISOString().substring(11, 19)
   }
 }, 1000)
+
+const netLog = document.getElementById("netLog")
+const netTarget = document.getElementById("netTarget")
+const scanPortsBtn = document.getElementById("scanPortsBtn")
+const pingHostBtn = document.getElementById("pingHostBtn")
+const clearNetLog = document.getElementById("clearNetLog")
+
+function writeNetLine(str, color='text-slate-300'){
+
+  if(!netLog) return
+
+  const line = document.createElement('div')
+  line.className = color
+  line.textContent = str
+  netLog.appendChild(line)
+  netLog.scrollTop = netLog.scrollHeight
+}
+
+
+clearNetLog?.addEventListener('click', () => {
+
+  if(netLog) netLog.innerHTML = ''
+})
+
+pingHostBtn?.addEventListener('click', ()=> {
+
+  const host = netTarget?.value.trim() || '127.0.0.1'
+  writeNetLine(`PING ${host}: 56 data bytes`, 'text-sky-400 font-bold')
+
+  let runs = 0
+  const timer = setInterval(() => {
+
+    runs++
+    const latency = (Math.random() * 18 + 6).toFixed(2)
+    writeNetLine(`64 bytes from ${host}: seq=${runs} time=${latency} ms`)
+
+    if (runs >=4) {
+
+      clearInterval(timer)
+      writeNetLine(`--- ${host} ping completed: 0% packet loss ---`, "text-emerald-400")
+    }
+    }, 400)
+  })
+
+
+  scanPortsBtn?.addEventListener('click', () => {
+
+    const host = netTarget?.value.trim() || '127.0.0.1'
+    scanPortsBtn.disabled = true
+    scanPortsBtn.textContent = 'BUSY...'
+    writeNetLine(`PORT SCAN: Probing ${host}...`, 'text-sky-400 font-bold')
+
+    const ports = [
+    { p: 21, svc: "FTP", status: "CLOSED" },
+    { p: 22, svc: "SSH", status: "OPEN" },
+    { p: 80, svc: "HTTP", status: "OPEN" },
+    { p: 443, svc: "HTTPS", status: "OPEN" },
+    { p: 3306, svc: "MYSQL", status: "CLOSED" },
+    { p: 8080, svc: "NODE", status: "FILTERED" }
+  ]
+
+  let i= 0
+
+  const scanner = setInterval(() => {
+
+    if(i < ports.length){
+
+      const entry = ports[i]
+      const color = entry.status === 'OPEN' ? 'text-emerald-400' : (entry.status === "FILTERED" ? "text-amber-400" : "text-slate-500")
+      writeNetLine(`[+] ${entry.p}/tcp (${entry.svc}) - ${entry.status}`, color)
+      i++
+    } else {
+
+      clearInterval(scanner)
+      writeNetLine(`Scan finished on ${host}`, 'text-slate-400')
+      scanPortsBtn.disabled = false
+      scanPortsBtn.textContent = 'SCAN'
+    }
+  }, 350)
+
+  })
