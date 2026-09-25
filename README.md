@@ -4,6 +4,8 @@ HackerOS is a fictional hacker-style operating system interface built using HTML
 
 It is designed to give a movie-style hacking experience directly in the browser.
 
+<img src = 'demo.png'>
+
 ## Features
 
 - Hacker-style boot screen
