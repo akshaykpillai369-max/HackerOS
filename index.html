@@ -382,6 +382,42 @@
       </div>
     </section>
 
+    <section id="musicWindow" class="os-window absolute left-1/2 top-24 z-30 hidden w-72 max-w-full -translate-x-1/2 p-4 text-xs">
+
+      <div id="musicHeader" class="window-header -mx-4 -mt-4 mv-3 flex items-center justify-between px-3 text-slate-300">
+
+        <span>🎧 H-Audio</span>
+
+        <button id="musicClose" class="h-5 w-5 rounded text-slate-400"></button>
+      </div>
+
+      <div class="space-y-3">
+
+        <div class="rounded border border-white/10 bg-slate-950 p-3 text-center space-y-2">
+
+          <div class="h-28 w-28 mx-auto overflow-hidden rounded-md border border-white/10 bg-slate-900 flex items-center justify-center">
+            <img id="playerCover" src="" alt="Cover" class="h-full w-full object-cover hidden">
+            <span id="playerCoverPlaceholder" class="text-2xl text-slate-600">🎵</span>
+          </div>
+
+          
+          <div id="playerTitle" class="font-bold text-white truncate">Loading...</div>
+
+          <div id="playerTime" class="text-[10px] text-slate-400 mt-1">00:00 / 00:00</div>
+        </div>
+
+        <audio id="audioEl" src=""></audio>
+
+        <div class="flex gap-2">
+          <button id="prevBtn" class="rounded border border-white/10 px-3 py-1.5 text-slate-300 hover:bg-white/5 text-[11px]">⏮</button>
+          <button id="playBtn" class="btn-primary flex-1 py-1.5 font-bold text-[11px]">PLAY</button>
+          <button id="nextBtn" class="rounded border border-white/10 px-3 py-1.5 text-slate-300 hover:bg-white/5 text-[11px]">⏭</button>
+          <button id="muteBtn" class="rounded border border-white/10 px-3 py-1.5 text-slate-300 hover:bg-white/5 text-[11px]">MUTE</button>
+        </div>
+      </div>
+
+    </section>
+
     <section id="comingSoonWindow" class="os-window absolute left-1/2 top-32 z-30 hidden w-80 max-w-full -translate-x-1/2">
       <div id="comingSoonHeader" class="window-header flex items-center justify-between px-3 text-xs text-slate-400">
 
@@ -413,5 +449,7 @@
   </section>
 
   <script src="script.js"></script>
+
 </body>
 </html>
+

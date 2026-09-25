@@ -141,6 +141,10 @@ document.addEventListener("click", (e) => {
     openWindow(document.getElementById("calcWindow"))
   }
   
+  else if (appName === "music") {
+    openWindow(document.getElementById("musicWindow"))
+  }
+
   else {
 
     const comingSoon = document.getElementById("comingSoonWindow")
@@ -162,6 +166,7 @@ const windowControls = [
   { btn: "settingsClose", win: "settingsWindow" },
   { btn: "comingSoonClose", win: "comingSoonWindow" },
   { btn: "calcClose", win: "calcWindow" },
+  { btn: "musicClose", win: "musicWindow" },
 ]
 
 windowControls.forEach(({ btn, win }) => {
@@ -548,3 +553,124 @@ document.querySelectorAll('.calc-btn').forEach((btn) => {
     }
   })
 })
+
+const audioEl = document.getElementById("audioEl")
+const playBtn = document.getElementById("playBtn")
+const prevBtn = document.getElementById("prevBtn")
+const nextBtn = document.getElementById("nextBtn")
+const muteBtn = document.getElementById("muteBtn")
+const playerTitle = document.getElementById("playerTitle")
+const playerTime = document.getElementById("playerTime")
+const coverImg = document.getElementById("playerCover")
+const coverPlaceholder = document.getElementById("playerCoverPlaceholder")
+
+const tracks = [
+  {
+    name: "01. Aathma Raama",
+    url: "music/aathma-raama.mp3",
+    cover: "music/aathma-raama.png"
+  },
+  {
+    name: "02. Dai Dai",
+    url: "music/dai-dai.mp3",
+    cover: "music/dai-dai.png"
+  },
+  {
+    name: "03. Headlights",
+    url: "music/headlights.mp3",
+    cover: "music/headlights.png"
+  }
+]
+
+let currentTrack = 0
+
+function setTrack(index){
+
+  currentTrack = index
+
+  if(playerTitle){
+
+    playerTitle.textContent = tracks[currentTrack].name
+
+  }
+  if(audioEl){
+
+    audioEl.src = tracks[currentTrack].url
+  }
+
+  if (coverImg && tracks[currentTrack].cover) {
+    coverImg.src = tracks[currentTrack].cover
+    coverImg.classList.remove("hidden")
+    if (coverPlaceholder) coverPlaceholder.classList.add("hidden")
+  } else if (coverImg && coverPlaceholder) {
+    coverImg.classList.add("hidden")
+    coverPlaceholder.classList.remove("hidden")
+  }
+
+
+
+}
+
+
+function fmtTime(sec){
+
+  if(isNaN(sec)) return '00:00'
+  const m = String(Math.floor(sec /60)).padStart(2, '0')
+  const s = String(Math.floor(sec % 60)).padStart(2, '0')
+  return `${m}:${s}`
+}
+
+
+setTrack(0)
+
+playBtn?.addEventListener('click', () => {
+
+  if(audioEl.paused){
+
+    audioEl.play()
+    playBtn.textContent = 'PAUSE'
+  }
+
+  else{
+
+    audioEl.pause()
+    playBtn.textContent = 'PLAY'
+  }
+})
+
+prevBtn?.addEventListener("click", () => {
+  currentTrack = (currentTrack - 1 + tracks.length) % tracks.length
+  setTrack(currentTrack)
+  audioEl.play()
+  playBtn.textContent = "PAUSE"
+})
+
+nextBtn?.addEventListener("click", () => {
+  currentTrack = (currentTrack + 1) % tracks.length
+  setTrack(currentTrack)
+  audioEl.play()
+  playBtn.textContent = "PAUSE"
+})
+
+muteBtn?.addEventListener('click', () => {
+
+  audioEl.muted = !audioEl.muted
+  muteBtn.textContent = audioEl.muted ? "UNMUTE" : "MUTE"
+
+})
+
+audioEl?.addEventListener("timeupdate", () => {
+  if (playerTime) {
+    playerTime.textContent = `${fmtTime(audioEl.currentTime)} / ${fmtTime(audioEl.duration)}`
+  }
+})
+
+audioEl?.addEventListener("ended", () => {
+  nextBtn?.click()
+})
+
+
+
+
+
+
